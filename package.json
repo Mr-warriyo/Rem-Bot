@@ -1,0 +1,33 @@
+{
+  "name": "rem-bot",
+  "version": "0.1.0",
+  "description": "Rem is an Anime Based Discord Bot known for its main/best features which are Global Chat & ChatBot. This Project contains source code for Rem.",
+  "main": "Rem.js",
+  "scripts": {
+    "start": "node .",
+    "dev": "nodemon",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mr-warriyo/Rem-Bot.git"
+  },
+  "keywords": [
+    "ANIME",
+    "REM",
+    "DISCORD",
+    "DISCORDBOT",
+    "DISCORD.JS-BOT",
+    "ANIME-BOT",
+    "CHATBOT"
+  ],
+  "author": "Akshansh Srivastava",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mr-warriyo/Rem-Bot/issues"
+  },
+  "homepage": "https://github.com/Mr-warriyo/Rem-Bot#readme",
+  "dependencies": {
+    "discord.js": "^13.3.1"
+  }
+}
