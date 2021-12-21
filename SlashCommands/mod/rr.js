@@ -3,10 +3,11 @@ const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js")
 
 module.exports = {
   name: "rr",
-  description: "Reaction Role creator. There can be 1 to 9 Reaction Roles.",
+  description:
+    "Reaction Role creator. There can be 1 to 5 Reaction Roles. To add more ReactionRoles use cmd again.",
   type: "CHAT_INPUT",
   category: "mod",
-  userPerms: ["ADMINISTRATOR"],
+  userPerms: ["ADMINISTRATOR", "SEND_MESSAGES", "EMBED_LINKS"],
   botPerms: ["ADMINISTRATOR"],
   options: [
     {

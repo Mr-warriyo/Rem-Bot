@@ -1,16 +1,12 @@
 const Discord = require("discord.js")
-const {
-  MessageEmbed,
-  MessageActionRow,
-  MessageButton,
-} = require("discord.js")
+const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js")
 
 module.exports = {
   name: "ban",
   description: "bans the tagged user from the guild!",
   type: "CHAT_INPUT",
   category: "mod",
-  userPerms: ["BAN_MEMBERS"],
+  userPerms: ["BAN_MEMBERS", "SEND_MESSAGES", "EMBED_LINKS"],
   botPerms: ["BAN_MEMBERS"],
   options: [
     {

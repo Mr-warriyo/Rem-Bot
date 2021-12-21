@@ -30,4 +30,3 @@ require("./handlers/handler")(client)
 console.log("Handler is Running!")
 
 client.login(token)
-

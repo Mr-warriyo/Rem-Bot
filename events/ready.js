@@ -9,7 +9,7 @@ const db = new OP(process.env.mongo)
 const timenow = new Date()
 let as = 0
 client.on("ready", () => {
-  console.log(`\n[Day: ${timenow}] - Logged in as ${client.user.tag}!`)
+  console.log(`[Day: ${timenow}] - Logged in as ${client.user.tag}!`)
   setInterval(() => {
     client.user.setActivity("Global Chat & Other Commands :)", {
       type: "STREAMING",

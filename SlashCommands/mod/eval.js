@@ -3,11 +3,10 @@ const { MessageEmbed } = Discord
 
 module.exports = {
   name: "eval",
-  description: "Test a javascript/discord.js code!",
+  description: "Test a javascript/discord.js code!(Owner Only Command!)",
   type: "CHAT_INPUT",
   category: "mod",
-  userPerms: ["ADMINISTRATOR"],
-  botPerms: ["ADMINISTRATOR"],
+  ownerOnly: true,
   options: [
     {
       name: "code",

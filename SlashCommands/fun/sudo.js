@@ -6,6 +6,7 @@ module.exports = {
   description: "Updated version of say command! Try to see the magic 😉",
   type: "CHAT_INPUT",
   category: "fun",
+  botPerms: ["SEND_MESSAGES", "EMBED_LINKS", "MANAGE_WEBHOOKS"],
   options: [
     {
       name: "user",

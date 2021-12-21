@@ -62,6 +62,23 @@ client.on("interactionCreate", async (interaction) => {
         }
       }
 
+      if (cmd) {
+        if (cmd.ownerOnly === true) {
+          if (
+            interaction.user.id !== "584684175035203605" &&
+            interaction.user.id !== "621217072541597696"
+          ) {
+            EPERM.addField(
+              "Permission Error",
+              `This command is only made for Bot Owner! \`@Akshansh#2200\` & \` @Sanikava#2663\``
+            )
+            return interaction.followUp({
+              embeds: [EPERM],
+            })
+          }
+        }
+      }
+
       if (cmd) cmd.execute(client, interaction, args)
     } catch (err) {
       interaction.followUp({

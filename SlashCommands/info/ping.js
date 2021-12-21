@@ -2,11 +2,15 @@ const { MessageEmbed } = require("discord.js")
 
 module.exports = {
   name: "ping",
-  description: "returns websocket ping",
+  description: "returns bot ping",
   type: "CHAT_INPUT",
   botPerms: ["SEND_MESSAGES", "EMBED_LINKS"],
   category: "info",
   execute: async (client, interaction, args) => {
+    const hello = await interaction.followUp({
+      content: `🏓 | Calculating the Ping!`,
+    })
+
     const PE = new MessageEmbed()
       .setAuthor(
         client.user.tag,
@@ -16,10 +20,16 @@ module.exports = {
       )
       .setTitle("Here's my Ping 🏓")
       .setColor("GREEN")
-      .setDescription(`${client.ws.ping}ms!`)
+      .addField(
+        "Ping:",
+        `Bot's Latency is ${
+          hello.createdTimestamp - interaction.createdTimestamp
+        }ms.\nBot's ping is ${Math.round(client.ws.ping)}ms.`
+      )
       .setTimestamp()
 
-    interaction.followUp({
+    await hello.edit({
+      content: "Calculated!",
       embeds: [PE],
     })
   },

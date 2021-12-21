@@ -7,6 +7,7 @@ module.exports = {
   description: "ChatBot feature, but with Slash Commands!",
   type: "CHAT_INPUT",
   category: "fun",
+  botPerms: ["SEND_MESSAGES"],
   options: [
     {
       name: "message",
@@ -17,16 +18,8 @@ module.exports = {
   ],
   execute: async (client, interaction, args) => {
     if (interaction.user.bot) return
-    if (
-      interaction.guild.id !== "812617163927584788" &&
-      interaction.channel.id !== "886626418954489926"
-    ) {
-      return interaction.followUp({
-        content: "I'll only reply in <#886626418954489926> Channel!",
-      })
-    }
 
-    const messageC = interaction.options.get("message").value
+    const messageC = args[0]
 
     if (messageC.includes(`@`)) {
       return interaction.followUp({

@@ -7,6 +7,7 @@ module.exports = {
     "Suggest us anything you want to be added in ASTRO APP or our Community",
   type: "CHAT_INPUT",
   category: "server",
+  botPerms: ["SEND_MESSAGES", "EMBED_LINKS"],
   options: [
     {
       name: "suggestion",
@@ -42,6 +43,11 @@ module.exports = {
       )
 
     interaction.followUp({
+      content: `Normal Users are not allowed to use this cmd yet!`,
+    })
+
+    /*
+    interaction.followUp({
       content: `✅｜Your Suggestion was sent to ${SugC} Succesfully!\nNow, you just need to wait for the results!`,
     })
 
@@ -51,5 +57,6 @@ module.exports = {
 
     msg.react("✅")
     msg.react("❎")
+*/
   },
 }

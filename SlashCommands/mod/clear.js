@@ -5,7 +5,12 @@ module.exports = {
   description: "deletes the messages!",
   type: "CHAT_INPUT",
   category: "mod",
-  userPerms: ["MANAGE_MESSAGES", "MANAGE_GUILD"],
+  userPerms: [
+    "MANAGE_MESSAGES",
+    "MANAGE_GUILD",
+    "SEND_MESSAGES",
+    "EMBED_LINKS",
+  ],
   botPerms: ["MANAGE_MESSAGES", "MANAGE_GUILD"],
   options: [
     {

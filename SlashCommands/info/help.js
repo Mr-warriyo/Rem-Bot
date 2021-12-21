@@ -11,14 +11,14 @@ module.exports = {
     {
       name: "command",
       description:
-        "Enter a Command name to see its info.\nTo see full help command enter `all` in this field.",
+        "Enter a Command name to see its info.\nDo not enter anything in this field to get all available cmds.",
       type: "STRING",
-      required: true,
+      required: false,
     },
   ],
   execute: async (client, interaction, args) => {
     const { slashCommands } = client
-    let cmdName = interaction.options.get("command").value
+    let cmdName = args[0]
 
     const main = new MessageEmbed()
       .setTitle(`Help Command was Requested by: ${interaction.user.username}.`)
@@ -40,6 +40,7 @@ module.exports = {
         \nPage 3: \`Fun Commands\`
         \nPage 4: \`Server Commands\`
         \nPage 5: \`Info Commands\`
+        \nPage 6: \`Battle(Game) Commands\`
       `
       )
       .addField(
@@ -83,6 +84,14 @@ module.exports = {
       .setTitle("SERVER COMMANDS")
       .setDescription("The Page contains SERVER COMMANDS.")
 
+    const battle = new MessageEmbed()
+      .setAuthor(
+        client.user.username,
+        client.user.displayAvatarURL({ dynamic: true })
+      )
+      .setTitle("BATTLE COMMANDS")
+      .setDescription("The Page contains BATTLE(Game) COMMANDS.")
+
     const button1 = new MessageButton()
       .setCustomId("prev")
       .setLabel("Previous Page")
@@ -93,7 +102,7 @@ module.exports = {
       .setLabel("Next Page")
       .setStyle("PRIMARY")
 
-    const pages = [main, mod, fun, info]
+    const pages = [main, mod, fun, info, server, battle]
 
     const buttonList = [button1, button2]
 
@@ -101,21 +110,21 @@ module.exports = {
       if (category === "mod") {
         mod.addField(`**Name**: ${name}`, `**Description**: ${description}`)
       } else if (category === "fun") {
-        funMusic.addField(
-          `**Name**: ${name}`,
-          `**Description**: ${description}`
-        )
+        fun.addField(`**Name**: ${name}`, `**Description**: ${description}`)
       } else if (category === "info") {
         info.addField(`**Name**: ${name}`, `**Description**: ${description}`)
       } else if (category === "server") {
-        server.addField(`**Name**: ${name}`, `**Description**: ${description}`)
+        server.addField("Info", "Commands will be added soon!")
+        // server.addField(`**Name**: ${name}`, `**Description**: ${description}`)
+      } else if (category === "game:battle") {
+        battle.addField(`**Name**: ${name}`, `**Description**: ${description}`)
       } else {
         console.log(`UNKOWN CATEGORY: ${name}`)
       }
     })
 
-    if (cmdName.toLowerCase() === "all" || cmdName.toUpperCase() === "ALL") {
-      await PE(interaction, pages, buttonList, "3600000")
+    if (!cmdName) {
+      await PE(interaction, pages, buttonList, "3600000", false)
     } else {
       let ressu = 0
       slashCommands.each(({ name, description, category }) => {
@@ -130,7 +139,7 @@ module.exports = {
             .addField("Command Name:", name)
             .addField("Command Description:", description)
             .addField("Command Category:", category)
-            .setFooter("NOTE: The command above is a Slash Command!")
+            .setFooter("NOTE: The above command is a Slash Command!")
 
           interaction.followUp({
             embeds: [cmdInfo],
@@ -140,7 +149,7 @@ module.exports = {
       })
       if (ressu <= 0) {
         return interaction.followUp({
-          content: `Command '${cmdName}' was not found or is Invalid.\nPlease use "/help" & enter command field as "all" to get available commands.`,
+          content: `Command \`${cmdName}\` was not found or is Invalid.\nPlease use \`/help\` to get available commands.`,
         })
       }
     }

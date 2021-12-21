@@ -10,7 +10,8 @@ module.exports = {
   name: "startbattle",
   description: "Start the Battle between you & the Bot!",
   type: "CHAT_INPUT",
-  category: "game_battle",
+  category: "game:battle",
+  botPerms: ["SEND_MESSAGES", "EMBED_LINKS"],
   execute: async (client, interaction, args) => {
     let Player1HP = BotSpecs.hp
     let Player2HP = UserSpecs.hp

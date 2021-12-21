@@ -1,0 +1,70 @@
+const Discord = require("discord.js")
+const pkg = require("../../package.json")
+const { version: discordjsVersion } = require("discord.js")
+
+module.exports = {
+  name: "stats",
+  description: "shows the stats of the bot",
+  type: "CHAT_INPUT",
+  botPerms: ["SEND_MESSAGES", "EMBED_LINKS"],
+  category: "info",
+  execute: async (client, interaction, args) => {
+    let seconds = Math.floor(client.uptime / 1000)
+    let minutes = Math.floor(seconds / 60)
+    let hours = Math.floor(minutes / 60)
+    let days = Math.floor(hours / 24)
+
+    seconds %= 60
+    minutes %= 60
+    hours %= 24
+
+    const statembed = new Discord.MessageEmbed()
+      .setTitle("Bot Stats")
+      .setThumbnail(
+        client.user.displayAvatarURL({
+          dynamic: true,
+        })
+      )
+      .setAuthor(
+        client.user.tag,
+        client.user.displayAvatarURL({
+          dynamic: true,
+        })
+      )
+      .setColor("RANDOM")
+      .setDescription(`Rem Bot's Stat`)
+      .addField(
+        "Total Servers:",
+        `I am in ${client.guilds.cache.size} server(s)`
+      )
+      .addField(
+        "Version:",
+        `Node.js: v17.2.0\nDiscord.js: ${discordjsVersion}\nBot Version: ${pkg.version} running on ${pkg.platform}`
+      )
+      .addField("My Creation Date:", `1/21/2021`)
+      .addField(
+        "Uptime:",
+        `${days} day(s),${hours} hours, ${minutes} minutes, ${seconds} seconds`
+      )
+      .addField(
+        "Ping:",
+        `Bot Latency is ${
+          Date.now() - interaction.createdTimestamp
+        }ms.\nBot ping is ${Math.round(client.ws.ping)}ms`
+      )
+      .addField(
+        "Memory:",
+        `${(process.memoryUsage().rss / 1024 / 1024).toFixed(2)} MB RSS\n${(
+          process.memoryUsage().heapUsed /
+          1024 /
+          1024
+        ).toFixed(2)} MB Heap`,
+        true
+      )
+      .setTimestamp()
+
+    await interaction.followUp({
+      embeds: [statembed],
+    })
+  },
+}

@@ -1,3 +1,4 @@
 {
-  "token": "Your Bot Token"
+  "token": "Your Bot Token",
+  "uri": "Your MongoDB Connection URL"
 }

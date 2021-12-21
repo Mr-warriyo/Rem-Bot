@@ -6,7 +6,7 @@ module.exports = {
   description: "kicks the tagged user from the guild!",
   type: "CHAT_INPUT",
   category: "mod",
-  userPerms: ["KICK_MEMBERS"],
+  userPerms: ["KICK_MEMBERS", "SEND_MESSAGES", "EMBED_LINKS"],
   botPerms: ["KICK_MEMBERS"],
   options: [
     {
