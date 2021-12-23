@@ -8,7 +8,7 @@ module.exports = {
   type: "CHAT_INPUT",
   category: "mod",
   userPerms: ["ADMINISTRATOR", "SEND_MESSAGES", "EMBED_LINKS"],
-  botPerms: ["ADMINISTRATOR"],
+  botPerms: ["ADMINISTRATOR", "SEND_MESSAGES", "EMBED_LINKS"],
   options: [
     {
       name: "role1",

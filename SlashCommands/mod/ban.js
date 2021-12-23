@@ -7,7 +7,7 @@ module.exports = {
   type: "CHAT_INPUT",
   category: "mod",
   userPerms: ["BAN_MEMBERS", "SEND_MESSAGES", "EMBED_LINKS"],
-  botPerms: ["BAN_MEMBERS"],
+  botPerms: ["BAN_MEMBERS", "SEND_MESSAGES", "EMBED_LINKS"],
   options: [
     {
       name: "user",

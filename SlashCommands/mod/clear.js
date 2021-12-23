@@ -11,7 +11,7 @@ module.exports = {
     "SEND_MESSAGES",
     "EMBED_LINKS",
   ],
-  botPerms: ["MANAGE_MESSAGES", "MANAGE_GUILD"],
+  botPerms: ["MANAGE_MESSAGES", "MANAGE_GUILD", "SEND_MESSAGES", "EMBED_LINKS"],
   options: [
     {
       name: "messages",

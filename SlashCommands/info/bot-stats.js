@@ -18,6 +18,10 @@ module.exports = {
     minutes %= 60
     hours %= 24
 
+    const em = await interaction.followUp({
+      content: `Calculating the Statistics of the Bot!`,
+    })
+
     const statembed = new Discord.MessageEmbed()
       .setTitle("Bot Stats")
       .setThumbnail(
@@ -32,7 +36,7 @@ module.exports = {
         })
       )
       .setColor("RANDOM")
-      .setDescription(`Rem Bot's Stat`)
+      .setDescription(`Rem Bot's Statistics`)
       .addField(
         "Total Servers:",
         `I am in ${client.guilds.cache.size} server(s)`
@@ -48,9 +52,9 @@ module.exports = {
       )
       .addField(
         "Ping:",
-        `Bot Latency is ${
-          Date.now() - interaction.createdTimestamp
-        }ms.\nBot ping is ${Math.round(client.ws.ping)}ms`
+        `Bot's Latency is ${
+          em.createdTimestamp - interaction.createdTimestamp
+        }ms.\nBot's ping is ${Math.round(client.ws.ping)}ms.`
       )
       .addField(
         "Memory:",
@@ -58,12 +62,12 @@ module.exports = {
           process.memoryUsage().heapUsed /
           1024 /
           1024
-        ).toFixed(2)} MB Heap`,
-        true
+        ).toFixed(2)} MB Heap`
       )
       .setTimestamp()
 
-    await interaction.followUp({
+    em.edit({
+      content: "Calculated the Statistics!!",
       embeds: [statembed],
     })
   },
