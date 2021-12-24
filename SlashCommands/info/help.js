@@ -41,6 +41,7 @@ module.exports = {
         \nPage 4: \`Server Commands\`
         \nPage 5: \`Info Commands\`
         \nPage 6: \`Battle(Game) Commands\`
+        \nPage 7: \`Main Features\`
       `
       )
       .addField(
@@ -92,6 +93,22 @@ module.exports = {
       .setTitle("BATTLE COMMANDS")
       .setDescription("The Page contains BATTLE(Game) COMMANDS.")
 
+    const mainF = new MessageEmbed()
+      .setAuthor(
+        client.user.username,
+        client.user.displayAvatarURL({ dynamic: true })
+      )
+      .setTitle("Main Features")
+      .setDescription("The Page contains info about the Main Features of bot.")
+      .addField(
+        "Global Chat:",
+        `\`/setglobalchat <some channel here>\`: To set the Global Chat Channel & Type a message there to talk with others!`
+      )
+      .addField(
+        "ChatBot:",
+        `\`/setchatbot <some channel here>\`: To set the Chatbot Channel & Type a message there to talk with the bot!`
+      )
+
     const button1 = new MessageButton()
       .setCustomId("prev")
       .setLabel("Previous Page")
@@ -102,7 +119,7 @@ module.exports = {
       .setLabel("Next Page")
       .setStyle("PRIMARY")
 
-    const pages = [main, mod, fun, info, server, battle]
+    const pages = [main, mod, fun, info, server, battle, mainF]
 
     const buttonList = [button1, button2]
 
@@ -113,9 +130,8 @@ module.exports = {
         fun.addField(`**Name**: ${name}`, `**Description**: ${description}`)
       } else if (category === "info") {
         info.addField(`**Name**: ${name}`, `**Description**: ${description}`)
-      } else if (category === "server") {
-        server.addField("Info", "Commands will be added soon!")
-        // server.addField(`**Name**: ${name}`, `**Description**: ${description}`)
+      } else if (category === "serverinfo") {
+        server.addField(`**Name**: ${name}`, `**Description**: ${description}`)
       } else if (category === "game:battle") {
         battle.addField(`**Name**: ${name}`, `**Description**: ${description}`)
       } else {

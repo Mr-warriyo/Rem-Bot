@@ -45,7 +45,7 @@ module.exports = {
         "Version:",
         `Node.js: v17.2.0\nDiscord.js: ${discordjsVersion}\nBot Version: ${pkg.version} running on ${pkg.platform}`
       )
-      .addField("My Creation Date:", `1/21/2021`)
+      .addField("My Creation Date:", `2/8/2021`)
       .addField(
         "Uptime:",
         `${days} day(s),${hours} hours, ${minutes} minutes, ${seconds} seconds`

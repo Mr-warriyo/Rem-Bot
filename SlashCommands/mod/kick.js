@@ -50,10 +50,6 @@ module.exports = {
         embeds: [Hierarchy],
       })
     } else {
-      client.channels.cache.get("839380539889680414").send({
-        content: `Kick Log!!`,
-        embeds: [KickEmbed],
-      })
       interaction.followUp({
         embeds: [KickEmbed],
       })

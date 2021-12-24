@@ -1,9 +1,9 @@
 const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js")
-const globalChatModel = require("../../models/globalChatModel")
+const chatbotModel = require("../../models/chatbotModel")
 
 module.exports = {
-  name: "setglobalchannel",
-  description: "Set a Global Chat Channel for this Server.",
+  name: "setchatbotchannel",
+  description: "Set a Chatbot Channel & stop using `/chat` command.",
   type: "CHAT_INPUT",
   category: "mainFeatures",
   userPerms: ["ADMINISTRATOR"],
@@ -11,8 +11,8 @@ module.exports = {
   options: [
     {
       name: "channel",
+      description: "Add a Channel to set ChatBot",
       type: "CHANNEL",
-      description: "Select the Channel to set Global Chat.",
       required: true,
     },
   ],
@@ -20,7 +20,7 @@ module.exports = {
     const channelId = args[0]
     const guildId = interaction.guild.id
 
-    const a = await globalChatModel.findOne({
+    const a = await chatbotModel.findOne({
       guildId,
     })
 
@@ -29,22 +29,23 @@ module.exports = {
     })
 
     if (a) {
-      const caeRow = new MessageActionRow()
+      const newRow = new MessageActionRow()
+
+      newRow.addComponents(
+        new MessageButton()
+          .setLabel("Create New Channel")
+          .setStyle("DANGER")
+          .setCustomId("CreateNewChannel")
+      )
+
+      newRow.addComponents(
+        new MessageButton()
+          .setLabel("Dont Create New Channel")
+          .setStyle("DANGER")
+          .setCustomId("DontCreateNewChannel")
+      )
 
       const channelAlreadyExists = () => {
-        caeRow.addComponents(
-          new MessageButton()
-            .setLabel("Create new & Delete current.")
-            .setStyle("SUCCESS")
-            .setCustomId("CreateNewChannel")
-        )
-        caeRow.addComponents(
-          new MessageButton()
-            .setLabel("Dont Create new, old is gold :)")
-            .setStyle("DANGER")
-            .setCustomId("DontCreateNewChannel")
-        )
-
         const filter = (i) => i.user.id === interaction.user.id
 
         const collector = interaction.channel.createMessageComponentCollector({
@@ -54,7 +55,7 @@ module.exports = {
 
         collector.on("collect", async (i) => {
           if (i.customId === "CreateNewChannel") {
-            await globalChatModel.findOneAndUpdate(
+            await chatbotModel.findOneAndUpdate(
               {
                 guildId,
               },
@@ -65,12 +66,14 @@ module.exports = {
             await i.update({
               content: `Setted Up the New Global Chat Channel to <#${channelId}> from <#${a.channelId}>!`,
               components: [],
+              embeds: [],
             })
             collector.stop()
           } else if (i.customId === "DontCreateNewChannel") {
             await i.update({
               content: `Action Denied! Global Chat Channel is still same: <#${channelId}>.`,
               components: [],
+              embeds: [],
             })
             collector.stop()
           }
@@ -87,24 +90,40 @@ module.exports = {
       }
 
       channelAlreadyExists()
+
+      const AEm = new MessageEmbed()
+        .setTitle("Set Chatbot Channel")
+        .setColor("RANDOM")
+        .setAuthor(
+          client.user.username,
+          client.user.displayAvatarURL({ dynamic: true })
+        )
+        .setDescription("Some Error Occurred while the execution!")
+        .addField(
+          "Error:",
+          `There is Already a Chatbot Channel (<#${a.channelId}>)`
+        )
+        .addField("Info", `Use Buttons below to continue or Abort the command.`)
+        .setFooter("Timeout for Buttons: 40secs")
+
       await msg.edit({
-        content: `Server already has a Global Chat Channel (<#${a.channelId}>)!\nDo you want to continue Anyways? Use buttons which are provided below.\nTimeout for Buttons: 40seconds.`,
-        components: [caeRow],
+        embeds: [AEm],
+        components: [newRow],
       })
     } else {
-      await globalChatModel.create({
+      await chatbotModel.create({
         guildId,
         channelId,
       })
 
       const EM = new MessageEmbed()
-        .setTitle("Setting Up Global Chat!")
+        .setTitle("Setting Up ChatBot!")
         .setColor("GREEN")
         .setAuthor(
           client.user.username,
           client.user.displayAvatarURL({ dynamic: true })
         )
-        .setDescription(`New Global Chat Channel set to <#${channelId}>!`)
+        .setDescription(`New ChatBot Channel set to <#${channelId}>!`)
 
       msg.edit({
         content: `Done! <#${channelId}>.`,
