@@ -29,8 +29,9 @@ client.on("messageCreate", async (message) => {
             .setColor("GREEN")
             .setAuthor(
               message.author.tag,
-              message.author.displayAvatarURL({ dynamic: true })
+              message.author.avatarURL({ dynamic: true })
             )
+            .setThumbnail(message.guild.iconURL({ dynamic: true }))
             .setDescription(`Message:\n${message.content}.`)
             .addField(
               `Tips:`,
