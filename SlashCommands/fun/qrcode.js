@@ -20,6 +20,11 @@ module.exports = {
 
     const Embed = new MessageEmbed()
       .setColor("RANDOM")
+      .setAuthor({
+        name: client.user.username,
+        url: client.user.avatarURL({ dynamic: true }),
+        iconURL: client.user.displayAvatarURL({ dynamic: true }),
+      })
       .setImage(
         encodeURI(
           `https://chart.googleapis.com/chart?chl=${Msg}&chs=200x200&cht=qr&chld=H|0`

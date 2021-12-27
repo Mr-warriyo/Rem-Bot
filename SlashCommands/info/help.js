@@ -51,7 +51,7 @@ module.exports = {
         })
         .setColor("RANDOM")
         .setDescription(
-          "Bot Name: @Rem Bot#7003, \nCreator: @Akshansh#2200, \nTimeout of Help Command: 1 hour, \nTip: Use the buttons below to move through Page."
+          "Bot Name: @Rem Bot#7003, \nCreator: @Akshansh#2200, \nTimeout of Help Command: 1 hour."
         )
         .addField(
           ":information_source: Server Info Commands:",
