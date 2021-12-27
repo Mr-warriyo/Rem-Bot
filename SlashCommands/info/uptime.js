@@ -18,10 +18,11 @@ module.exports = {
 
     const UptimeEm = new MessageEmbed()
       .setTitle("Uptime of Bot:")
-      .setAuthor(
-        client.user.username,
-        client.user.displayAvatarURL({ dynamic: true })
-      )
+      .setAuthor({
+        name: client.user.username,
+        url: client.user.avatarURL({ dynamic: true }),
+        iconURL: client.user.displayAvatarURL({ dynamic: true }),
+      })
       .setColor("WHITE")
       .setDescription(
         `Bot was last restarted: \`${days}\`: Days \`${hours}\`: Hours \`${minutes}\`: Minutes \`${seconds}\`: Seconds ago.`

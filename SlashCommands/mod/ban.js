@@ -33,6 +33,11 @@ module.exports = {
       .setTitle("User was successfully Banned from this guild!")
       .setDescription("Here's some Important Information given below ↓")
       .setColor("GREEN")
+      .setAuthor({
+        name: client.user.username,
+        url: client.user.avatarURL({ dynamic: true }),
+        iconURL: client.user.displayAvatarURL({ dynamic: true }),
+      })
       .addField("Moderator:", interaction.user.tag)
       .addField("Banned User:", user.tag)
       .addField("Reason:", reason)
@@ -40,6 +45,11 @@ module.exports = {
     const Hierarchy = new MessageEmbed()
       .setTitle("Error while Banning the user from this guild!")
       .setColor("RED")
+      .setAuthor({
+        name: client.user.username,
+        url: client.user.avatarURL({ dynamic: true }),
+        iconURL: client.user.displayAvatarURL({ dynamic: true }),
+      })
       .addField(
         "Reason:",
         "I was unable to Ban the user because user's role is higher than mine!"

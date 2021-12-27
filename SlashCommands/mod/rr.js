@@ -47,6 +47,11 @@ module.exports = {
     const RoleEmbed = new MessageEmbed()
       .setTitle("Self Roles!")
       .setColor("RANDOM")
+      .setAuthor({
+        name: client.user.username,
+        url: client.user.avatarURL({ dynamic: true }),
+        iconURL: client.user.displayAvatarURL({ dynamic: true }),
+      })
       .setDescription("Tap on Right Buttons, to get those Roles!")
       .addField(
         "Rules:",

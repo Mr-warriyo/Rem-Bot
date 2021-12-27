@@ -21,12 +21,11 @@ module.exports = {
     if (!u) {
       const TU = new MessageEmbed()
         .setTitle("Here's the Avatar!")
-        .setAuthor(
-          user.tag,
-          user.displayAvatarURL({
-            dynamic: true,
-          })
-        )
+        .setAuthor({
+          name: user.tag,
+          url: user.avatarURL({ dynamic: true }),
+          iconURL: user.displayAvatarURL({ dynamic: true }),
+        })
         .setImage(
           user.displayAvatarURL({
             dynamic: true,
@@ -43,12 +42,11 @@ module.exports = {
       const us = client.users.cache.get(user.id) || client.users.cache.get(u)
       const UT = new MessageEmbed()
         .setTitle("Here's the avatar")
-        .setAuthor(
-          us.tag,
-          us.displayAvatarURL({
-            dynamic: true,
-          })
-        )
+        .setAuthor({
+          name: us.tag,
+          url: us.avatarURL({ dynamic: true }),
+          iconURL: us.displayAvatarURL({ dynamic: true }),
+        })
         .setImage(
           us.displayAvatarURL({
             dynamic: true,

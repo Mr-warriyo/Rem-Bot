@@ -38,12 +38,13 @@ module.exports = async (client) => {
     arrayOfSlashCommands.push(file)
   })
   client.on("ready", async () => {
-    await client.guilds.cache
-      .get("716912981350547539")
-      .commands.set(arrayOfSlashCommands)
+    client.guilds.cache.forEach(async (guild) => {
+      await client.guilds.cache.get(guild.id).commands.set(arrayOfSlashCommands)
+    })
+  })
 
-    await client.guilds.cache
-      .get("812617163927584788")
-      .commands.set(arrayOfSlashCommands)
+  // If bot joins a guild
+  client.on("guildCreate", async (guild) => {
+    await client.guilds.cache.get(guild.id).commands.set(arrayOfSlashCommands)
   })
 }

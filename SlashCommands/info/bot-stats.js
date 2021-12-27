@@ -29,12 +29,11 @@ module.exports = {
           dynamic: true,
         })
       )
-      .setAuthor(
-        client.user.tag,
-        client.user.displayAvatarURL({
-          dynamic: true,
-        })
-      )
+      .setAuthor({
+        name: client.user.username,
+        url: client.user.avatarURL({ dynamic: true }),
+        iconURL: client.user.displayAvatarURL({ dynamic: true }),
+      })
       .setColor("RANDOM")
       .setDescription(`Rem Bot's Statistics`)
       .addField(
@@ -48,7 +47,7 @@ module.exports = {
       .addField("My Creation Date:", `2/8/2021`)
       .addField(
         "Uptime:",
-        `${days} day(s),${hours} hours, ${minutes} minutes, ${seconds} seconds`
+        `${days} day(s), ${hours} hours, ${minutes} minutes, ${seconds} seconds`
       )
       .addField(
         "Ping:",

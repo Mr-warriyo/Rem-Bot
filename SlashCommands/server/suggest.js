@@ -22,12 +22,11 @@ module.exports = {
     const server = interaction.guild
     const SugC = interaction.guild.channels.cache.get("885825509546676244")
     const SugE = new MessageEmbed()
-      .setAuthor(
-        user.tag,
-        user.displayAvatarURL({
-          dynamic: true,
-        })
-      )
+      .setAuthor({
+        name: client.user.username,
+        url: client.user.avatarURL({ dynamic: true }),
+        iconURL: client.user.displayAvatarURL({ dynamic: true }),
+      })
       .setThumbnail(client.user.displayAvatarURL({ dynamic: true }))
       .setColor("YELLOW")
       .setTitle("💡｜Here's a new Suggestion!")

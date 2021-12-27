@@ -46,10 +46,11 @@ module.exports = {
     const BattleBeginEm = new MessageEmbed()
       .setTitle("The Battle has begun!")
       .setColor("#00FFF")
-      .setAuthor(
-        client.user.username,
-        client.user.displayAvatarURL({ dynamic: true })
-      )
+      .setAuthor({
+        name: client.user.username,
+        url: client.user.avatarURL({ dynamic: true }),
+        iconURL: client.user.displayAvatarURL({ dynamic: true }),
+      })
       .setDescription(
         `Started the battle between Bot & You! More Details are Provided below:`
       )

@@ -47,7 +47,11 @@ module.exports = {
     const MB = new MessageEmbed()
       .setTitle("Timed Out/Muted User!")
       .setColor("GREEN")
-      .setAuthor(client.user.username, botAv)
+      .setAuthor({
+        name: client.user.username,
+        url: client.user.avatarURL({ dynamic: true }),
+        iconURL: client.user.displayAvatarURL({ dynamic: true }),
+      })
       .setDescription(`<@!${userId}> has been Muted/Timed Out!`)
       .addField(
         "Duration:",

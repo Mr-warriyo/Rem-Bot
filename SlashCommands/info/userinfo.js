@@ -20,10 +20,14 @@ module.exports = {
     let user =
       interaction.guild.members.cache.get(args[0]) || interaction.member
 
-
     const embed = new MessageEmbed()
-      .setTitle(`${user.user.username} stats`)
+      .setTitle(`${user.user.username}'s Info:`)
       .setColor(`#f3f3f3`)
+      .setAuthor({
+        name: client.user.username,
+        url: client.user.avatarURL({ dynamic: true }),
+        iconURL: client.user.displayAvatarURL({ dynamic: true }),
+      })
       .setThumbnail(user.user.displayAvatarURL({ dynamic: true }))
       .addFields(
         {
@@ -42,7 +46,10 @@ module.exports = {
         },
         {
           name: "Avatar link: ",
-          value: `[Click Here](${user.user.displayAvatarURL()})`,
+          value: `[Click Here](${user.user.displayAvatarURL({
+            dynamic: true,
+            size: 1024,
+          })})`,
         },
         {
           name: "Creation Date: ",

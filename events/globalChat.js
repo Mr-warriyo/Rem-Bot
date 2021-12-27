@@ -26,27 +26,23 @@ client.on("messageCreate", async (message) => {
 
           const EM = new MessageEmbed()
             .setTitle("Global Chat: Connecting Servers.")
-            .setColor("GREEN")
-            .setAuthor(
-              message.author.tag,
-              message.author.avatarURL({ dynamic: true })
-            )
+            .setColor("RANDOM")
+            .setAuthor({
+              name: message.author.tag,
+              url: message.author.avatarURL({ dynamic: true }),
+              iconURL: message.author.displayAvatarURL({ dynamic: true }),
+            })
             .setThumbnail(message.guild.iconURL({ dynamic: true }))
-            .setDescription(`Message:\n${message.content}.`)
+            .addField(`Message:`, `\n${message.content}`)
             .addField(
-              `Tips:`,
-              `[Vote Me](https://top.gg/bot/${client.user.id}/vote)`
-            )
-            .addField(
-              `Guild Info:`,
-              `Message from ${message.guild.name} | ServerID: ${message.guild.id}. | Member Count: ${message.guild.memberCount}`
+              `Links:`,
+              `\n[Support Server](https://discord.gg/m9q39CZuHv)\n[Top.gg](https://top.gg/bot/${client.user.id})
+              `
             )
             .setFooter(
-              message.guild.id,
-              message.guild.iconURL({
-                dynamic: true,
-              })
+              `Server Name: ${message.guild.name} | Server ID: ${message.guild.id} | Member Count: ${message.guild.memberCount}`
             )
+            .setTimestamp()
 
           otherCh.send({
             embeds: [EM],

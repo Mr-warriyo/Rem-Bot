@@ -5,7 +5,7 @@ module.exports = {
   description: "Get Info of a Emoji!!",
   type: "CHAT_INPUT",
   category: "serverInfo",
-  botPerms: ["SEND_interactionS", "EMBED_LINKS"],
+  botPerms: ["SEND_MESSAGES", "EMBED_LINKS"],
   options: [
     {
       name: "emoji",
@@ -55,6 +55,11 @@ module.exports = {
 
     const b = new MessageEmbed()
       .setTitle(`Emoji info!`)
+      .setAuthor({
+        name: client.user.username,
+        url: client.user.avatarURL({ dynamic: true }),
+        iconURL: client.user.displayAvatarURL({ dynamic: true }),
+      })
       .setThumbnail(link)
       .addFields(
         { name: "Emoji:", value: `${emoji}`, inline: false },

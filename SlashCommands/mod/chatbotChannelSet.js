@@ -94,10 +94,11 @@ module.exports = {
       const AEm = new MessageEmbed()
         .setTitle("Set Chatbot Channel")
         .setColor("RANDOM")
-        .setAuthor(
-          client.user.username,
-          client.user.displayAvatarURL({ dynamic: true })
-        )
+        .setAuthor({
+          name: client.user.username,
+          url: client.user.avatarURL({ dynamic: true }),
+          iconURL: client.user.displayAvatarURL({ dynamic: true }),
+        })
         .setDescription("Some Error Occurred while the execution!")
         .addField(
           "Error:",
@@ -119,10 +120,11 @@ module.exports = {
       const EM = new MessageEmbed()
         .setTitle("Setting Up ChatBot!")
         .setColor("GREEN")
-        .setAuthor(
-          client.user.username,
-          client.user.displayAvatarURL({ dynamic: true })
-        )
+        .setAuthor({
+          name: client.user.username,
+          url: client.user.avatarURL({ dynamic: true }),
+          iconURL: client.user.displayAvatarURL({ dynamic: true }),
+        })
         .setDescription(`New ChatBot Channel set to <#${channelId}>!`)
 
       msg.edit({

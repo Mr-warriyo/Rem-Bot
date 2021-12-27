@@ -12,12 +12,11 @@ module.exports = {
     })
 
     const PE = new MessageEmbed()
-      .setAuthor(
-        client.user.tag,
-        client.user.displayAvatarURL({
-          dynamic: true,
-        })
-      )
+      .setAuthor({
+        name: client.user.username,
+        url: client.user.avatarURL({ dynamic: true }),
+        iconURL: client.user.displayAvatarURL({ dynamic: true }),
+      })
       .setTitle("Here's my Ping 🏓")
       .setColor("GREEN")
       .addField(
