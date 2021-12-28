@@ -16,10 +16,7 @@ Rem Bot is a __Anime Based__ Discord Bot. It has lots of Features &amp; main fea
 
 <hr />
 
-<ul style="list-style: square">
-<li> clone this Repository via 
+## Clone this Repository via:
 ```
 git clone https://github.com/Mr-warriyo/Rem-Bot
 ```
-</li>
-</ul>
