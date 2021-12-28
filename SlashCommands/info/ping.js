@@ -2,7 +2,7 @@ const { MessageEmbed } = require("discord.js")
 
 module.exports = {
   name: "ping",
-  description: "returns bot ping",
+  description: "Shows the Ping & Latency Ping",
   type: "CHAT_INPUT",
   botPerms: ["SEND_MESSAGES", "EMBED_LINKS"],
   category: "info",
@@ -23,7 +23,7 @@ module.exports = {
         "Ping:",
         `Bot's Latency is ${
           hello.createdTimestamp - interaction.createdTimestamp
-        }ms.\nBot's ping is ${Math.round(client.ws.ping)}ms.`
+        }ms.\nBot's Ping is ${Math.round(client.ws.ping)}ms.`
       )
       .setTimestamp()
 

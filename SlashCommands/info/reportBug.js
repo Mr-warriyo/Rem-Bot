@@ -3,7 +3,7 @@ const { ownerID } = require("../../settings/config.json")
 
 module.exports = {
   name: "reportbug",
-  description: "Report a Bug which you see in Bot :)",
+  description: "Report a Bug which you find in Bot :)",
   type: "CHAT_INPUT",
   botPerms: ["SEND_MESSAGES", "EMBED_LINKS"],
   category: "info",
@@ -18,8 +18,13 @@ module.exports = {
   execute: async (client, interaction, args) => {
     const ownerA = client.users.cache.get(ownerID[0])
     const bug = args[0]
-    const user = interaction.user
-    // ownerID[0] is of Akshansh#2200.
+    const { user } = interaction
+    
+    /**
+     * ownerID[0] is first ID of array
+     * check settings/config.json
+     * or settings/test_config.json
+     */
 
     const em = new MessageEmbed()
       .setTitle("Bug Report!")

@@ -2,7 +2,7 @@ const { MessageEmbed } = require("discord.js")
 
 module.exports = {
   name: "qrcode",
-  description: "Encrypt the Text into QR Code & scan it :)",
+  description: "Encrypt the Text into QR Code & scan it Later :)",
   type: "CHAT_INPUT",
   category: "fun",
   botPerms: ["SEND_MESSAGES", "EMBED_LINKS"],

@@ -4,7 +4,7 @@ const { version: discordjsVersion } = require("discord.js")
 
 module.exports = {
   name: "stats",
-  description: "shows the stats of the bot",
+  description: "Shows the stats of the bot",
   type: "CHAT_INPUT",
   botPerms: ["SEND_MESSAGES", "EMBED_LINKS"],
   category: "info",
