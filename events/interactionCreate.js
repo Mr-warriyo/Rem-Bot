@@ -46,6 +46,7 @@ client.on("interactionCreate", async (interaction) => {
               cmd.userPerms || []
             }\` Permission(s) to use this Command!`
           )
+
           return interaction.followUp({
             embeds: [EPERM],
           })
@@ -53,9 +54,10 @@ client.on("interactionCreate", async (interaction) => {
           EPERM.addField(
             "Permission Error",
             `I require: \`${
-              cmd.userPerms || []
+              cmd.botPerms || []
             }\` Permission(s) to run this Command!`
           )
+
           return interaction.followUp({
             embeds: [EPERM],
           })

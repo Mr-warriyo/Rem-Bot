@@ -69,73 +69,77 @@ module.exports = {
         "Both of the Players will get 800 HP, easy to take down each other? Maybe."
       )
 
-    const BattleBeginButton = new MessageActionRow()
+    start()
 
-    BattleBeginButton.addComponents(
-      new MessageButton()
-        .setLabel("Kick")
-        .setStyle("DANGER")
-        .setCustomId("KICK")
-        .setEmoji("🦶")
-    )
-    BattleBeginButton.addComponents(
-      new MessageButton()
-        .setLabel("Punch")
-        .setStyle("DANGER")
-        .setCustomId("PUNCH")
-        .setEmoji("🤜")
-    )
-    BattleBeginButton.addComponents(
-      new MessageButton()
-        .setLabel("Random")
-        .setStyle("DANGER")
-        .setCustomId("RANDOM")
-    )
+    async function start() {
+      const BattleBeginButton = new MessageActionRow()
 
-    await interaction.followUp({
-      embeds: [BattleBeginEm],
-    })
-    msg = await interaction.channel.send({
-      content:
-        "Use Buttons to select a move! Timeout for current moves: 30seconds.",
-      components: [BattleBeginButton],
-    })
-    colEvent()
+        .addComponents(
+          new MessageButton()
+            .setLabel("Kick")
+            .setStyle("DANGER")
+            .setCustomId("KICK")
+            .setEmoji("🦶")
+        )
+        .addComponents(
+          new MessageButton()
+            .setLabel("Punch")
+            .setStyle("DANGER")
+            .setCustomId("PUNCH")
+            .setEmoji("🤜")
+        )
+        .addComponents(
+          new MessageButton()
+            .setLabel("Random")
+            .setStyle("DANGER")
+            .setCustomId("RANDOM")
+        )
 
+      let csg = await interaction.followUp({
+        embeds: [BattleBeginEm],
+      })
+      msg = await interaction.channel.send({
+        content:
+          "Use Buttons to select a move! Timeout for current moves: 30seconds.",
+        components: [BattleBeginButton],
+      })
+      colEvent()
+    }
     async function newAttack(bhp, uhp) {
       const newAttackEm = new MessageEmbed()
         .setTitle("Choose Another Attack!!")
         .setColor("GREEN")
-        .setAuthor(
-          client.user.username,
-          client.user.displayAvatarURL({ dynamic: true })
-        )
+        .setAuthor({
+          name: client.user.username,
+          url: client.user.avatarURL({ dynamic: true }),
+          iconURL: client.user.displayAvatarURL({ dynamic: true }),
+        })
         .setDescription("You have 10 seconds, Choose another Attack!")
         .addField("Player 1 HP:(Bot)", `${bhp}/800`)
         .addField("Player 2 HP:(User)", `${uhp}/800`)
 
       const newAttackButton = new MessageActionRow()
 
-      newAttackButton.addComponents(
-        new MessageButton()
-          .setLabel("Kick")
-          .setStyle("DANGER")
-          .setCustomId("kick")
-          .setEmoji("🦶")
-      )
-      newAttackButton.addComponents(
-        new MessageButton()
-          .setLabel("Punch")
-          .setStyle("DANGER")
-          .setCustomId("punch")
-          .setEmoji("🤜")
-      )
-      newAttackButton.addComponents(
-        new MessageButton()
-          .setLabel("Random")
-          .setStyle("DANGER")
-          .setCustomId("random")
-      )
+        .addComponents(
+          new MessageButton()
+            .setLabel("Kick")
+            .setStyle("DANGER")
+            .setCustomId("kick")
+            .setEmoji("🦶")
+        )
+        .addComponents(
+          new MessageButton()
+            .setLabel("Punch")
+            .setStyle("DANGER")
+            .setCustomId("punch")
+            .setEmoji("🤜")
+        )
+        .addComponents(
+          new MessageButton()
+            .setLabel("Random")
+            .setStyle("DANGER")
+            .setCustomId("random")
+        )
 
       await msg.edit({
         embeds: [newAttackEm],
@@ -170,12 +174,12 @@ module.exports = {
 
       collector.on("collect", async (i) => {
         BotAttack()
+        RandomAttack()
+        BotDamage()
+        UserDamage()
         if (i.customId === "KICK") {
-          BotDamage()
-          UserDamage()
-
           await i.update({
-            content: `You choosed \`KICK\`! Bot choosed: \`${botAttack}\`.`,
+            content: `You chose \`KICK\`! Bot chose: \`${botAttack}\`.`,
             components: [],
             embeds: [],
           })
@@ -186,11 +190,8 @@ module.exports = {
             return BattleLoop(Player1HP, Player2HP)
           }
         } else if (i.customId === "PUNCH") {
-          BotDamage()
-          UserDamage()
-
           await i.update({
-            content: `You choosed \`PUNCH\`! Bot choosed: \`${botAttack}\`.`,
+            content: `You chose \`PUNCH\`! Bot chose: \`${botAttack}\`.`,
             components: [],
             embeds: [],
           })
@@ -201,12 +202,8 @@ module.exports = {
             return BattleLoop(Player1HP, Player2HP)
           }
         } else if (i.customId === "RANDOM") {
-          RandomAttack()
-          BotDamage()
-          UserDamage()
-
           await i.update({
-            content: `You choosed \`${randomAttack}\`! Bot choosed: \`${botAttack}\`.`,
+            content: `You chose \`${randomAttack}\`! Bot chose: \`${botAttack}\`.`,
             components: [],
             embeds: [],
           })
@@ -233,17 +230,18 @@ module.exports = {
 
       const collector = interaction.channel.createMessageComponentCollector({
         filter,
-        time: 8000,
+        time: 10000,
       })
 
       collector.on("collect", async (i) => {
         BotAttack()
-        if (i.customId === "kick") {
-          BotDamage()
-          UserDamage()
+        RandomAttack()
+        BotDamage()
+        UserDamage()
 
+        if (i.customId === "kick") {
           await i.update({
-            content: `You choosed \`KICK\`! Bot choosed: \`${botAttack}\`.`,
+            content: `You chose \`KICK\`! Bot chose: \`${botAttack}\`.`,
             components: [],
             embeds: [],
           })
@@ -254,11 +252,8 @@ module.exports = {
             return BattleLoop(Player1HP, Player2HP)
           }
         } else if (i.customId === "punch") {
-          BotDamage()
-          UserDamage()
-
           await i.update({
-            content: `You choosed \`PUNCH\`! Bot choosed: \`${botAttack}\`.`,
+            content: `You chose \`PUNCH\`! Bot chose: \`${botAttack}\`.`,
             components: [],
             embeds: [],
           })
@@ -269,12 +264,8 @@ module.exports = {
             return BattleLoop(Player1HP, Player2HP)
           }
         } else if (i.customId === "random") {
-          RandomAttack()
-          BotDamage()
-          UserDamage()
-
           await i.update({
-            content: `You choosed \`${randomAttack}\`! Bot choosed: \`${botAttack}\`.`,
+            content: `You chose \`${randomAttack}\`! Bot chose: \`${botAttack}\`.`,
             components: [],
             embeds: [],
           })

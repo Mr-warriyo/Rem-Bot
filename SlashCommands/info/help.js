@@ -71,7 +71,7 @@ module.exports = {
       })
     } else {
       let ressu = 0
-      slashCommands.each(({ name, description, category }) => {
+      slashCommands.each(({ name, description, category, userPerms, botPerms }) => {
         if (name === cmdName) {
           const cmdInfo = new MessageEmbed()
             .setTitle(`Showing Info for \`/${cmdName}\` command.`)
@@ -84,6 +84,8 @@ module.exports = {
             .addField("Command Name:", name)
             .addField("Command Description:", description)
             .addField("Command Category:", category)
+            .addField("Required Perms(User):", `${userPerms || "NONE"}`)
+            .addField("Required Perms(Bot):", `${botPerms || "NONE"}`)
             .setFooter("NOTE: The above command is a Slash Command!!")
 
           interaction.followUp({
@@ -94,7 +96,7 @@ module.exports = {
       })
       if (ressu <= 0) {
         return interaction.followUp({
-          content: `Command \`${cmdName}\` was not found or is Invalid.\nPlease use \`/help\` to get available commands.`,
+          content: `Command \`/${cmdName}\` was not found or is Invalid.\nPlease use \`/help\` to get available commands.`,
         })
       }
     }
