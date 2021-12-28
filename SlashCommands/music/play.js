@@ -17,8 +17,8 @@ module.exports = {
   execute: async (client, interaction, args) => {
     const channel = interaction.guild.me.voice.channel
     const song = args[0]
-
-    console.log(channel)
+console.log(song)
+    //console.log(channel)
 
     if (!channel) {
       return interaction.followUp({
@@ -32,10 +32,6 @@ module.exports = {
       song: song,
     })
 
-    event.on("playSong", (channel, songInfo, requester) => {
-      channel.send({
-        content: `Started playing the song [${songInfo.title}](${songInfo.url}) - ${songInfo.duration} | Requested by \`${requester.tag}\``,
-      })
-    })
+ 
   },
 }
