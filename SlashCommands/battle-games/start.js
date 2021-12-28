@@ -105,64 +105,6 @@ module.exports = {
       })
       colEvent()
     }
-    async function newAttack(bhp, uhp) {
-      const newAttackEm = new MessageEmbed()
-        .setTitle("Choose Another Attack!!")
-        .setColor("GREEN")
-        .setAuthor({
-          name: client.user.username,
-          url: client.user.avatarURL({ dynamic: true }),
-          iconURL: client.user.displayAvatarURL({ dynamic: true }),
-        })
-        .setDescription("You have 10 seconds, Choose another Attack!")
-        .addField("Player 1 HP:(Bot)", `${bhp}/800`)
-        .addField("Player 2 HP:(User)", `${uhp}/800`)
-
-      const newAttackButton = new MessageActionRow()
-
-        .addComponents(
-          new MessageButton()
-            .setLabel("Kick")
-            .setStyle("DANGER")
-            .setCustomId("kick")
-            .setEmoji("🦶")
-        )
-        .addComponents(
-          new MessageButton()
-            .setLabel("Punch")
-            .setStyle("DANGER")
-            .setCustomId("punch")
-            .setEmoji("🤜")
-        )
-        .addComponents(
-          new MessageButton()
-            .setLabel("Random")
-            .setStyle("DANGER")
-            .setCustomId("random")
-        )
-
-      await msg.edit({
-        embeds: [newAttackEm],
-        components: [newAttackButton],
-      })
-      let Player1HP = bhp
-      let Player2HP = uhp
-      newAttackColEvent(Player1HP, Player2HP)
-    }
-
-    async function BattleLoop(p1hp, p2hp) {
-      if (p1hp <= 0 && p2hp > p1hp) {
-        await msg.edit({
-          content: `Player 2(User) Won the Game! Congratulations & celebrations!!`,
-        })
-      } else if (p2hp <= 0 && p2hp < p1hp) {
-        await msg.edit({
-          content: `Player 1(Bot) Won the Game! Better Luck next time Mr/Mrs. User!!`,
-        })
-      } else if (p1hp !== 0 && p2hp !== 0) {
-        newAttack(p1hp, p2hp)
-      }
-    }
 
     async function colEvent() {
       const filter = (i) => i.user.id === interaction.user.id
@@ -223,6 +165,65 @@ module.exports = {
           })
         }
       })
+    }
+
+    async function BattleLoop(p1hp, p2hp) {
+      if (p1hp <= 0 && p2hp > p1hp) {
+        await msg.edit({
+          content: `Player 2(User) Won the Game! Congratulations & celebrations!!`,
+        })
+      } else if (p2hp <= 0 && p2hp < p1hp) {
+        await msg.edit({
+          content: `Player 1(Bot) Won the Game! Better Luck next time Mr/Mrs. User!!`,
+        })
+      } else if (p1hp !== 0 && p2hp !== 0) {
+        newAttack(p1hp, p2hp)
+      }
+    }
+
+    async function newAttack(bhp, uhp) {
+      const newAttackEm = new MessageEmbed()
+        .setTitle("Choose Another Attack!!")
+        .setColor("GREEN")
+        .setAuthor({
+          name: client.user.username,
+          url: client.user.avatarURL({ dynamic: true }),
+          iconURL: client.user.displayAvatarURL({ dynamic: true }),
+        })
+        .setDescription("You have 10 seconds, Choose another Attack!")
+        .addField("Player 1 HP:(Bot)", `${bhp}/800`)
+        .addField("Player 2 HP:(User)", `${uhp}/800`)
+
+      const newAttackButton = new MessageActionRow()
+
+        .addComponents(
+          new MessageButton()
+            .setLabel("Kick")
+            .setStyle("DANGER")
+            .setCustomId("kick")
+            .setEmoji("🦶")
+        )
+        .addComponents(
+          new MessageButton()
+            .setLabel("Punch")
+            .setStyle("DANGER")
+            .setCustomId("punch")
+            .setEmoji("🤜")
+        )
+        .addComponents(
+          new MessageButton()
+            .setLabel("Random")
+            .setStyle("DANGER")
+            .setCustomId("random")
+        )
+
+      await msg.edit({
+        embeds: [newAttackEm],
+        components: [newAttackButton],
+      })
+      let Player1HP = bhp
+      let Player2HP = uhp
+      newAttackColEvent(Player1HP, Player2HP)
     }
 
     async function newAttackColEvent(nbhp, nuhp) {
