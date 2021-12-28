@@ -20,3 +20,40 @@ Rem Bot is a __Anime Based__ Discord Bot. It has lots of Features &amp; main fea
 ```
 git clone https://github.com/Mr-warriyo/Rem-Bot
 ```
+
+## Redirect your Terminal to the Project via:
+```
+cd Rem-Bot
+```
+
+<hr />
+
+__BRAVO!!__ Now you've successfully cloned the Repository! After this to run it follow Steps given below:
+
+<hr />
+
+## Install all Node Modules via:
+```
+npm install
+```
+
+## Edit config.json file:
+Go to /settings folder & open `test_config.json` file. Copy the code provided in it & create a `config.json` file in `/settings` folder. Now, Edit the `config.json` details.
+
+## Run your bot via:
+
+### Nodemon:
+```
+npm run dev
+```
+
+### Node:
+```
+npm start
+```
+
+<br />
+
+
+# Issue:
+<p> If you're facing any Issue with this repository code/setup. Feel free to open a Issue in this Repo, I'll try to solve it as soon as possible ^^ </p>
