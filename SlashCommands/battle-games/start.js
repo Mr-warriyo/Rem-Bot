@@ -161,6 +161,7 @@ module.exports = {
         if (collected.size <= 0) {
           msg.edit({
             components: [],
+            embeds: [],
             content: "User did not choose any option. Ending the Battle.",
           })
         }
@@ -283,6 +284,7 @@ module.exports = {
         if (collected.size <= 0) {
           msg.edit({
             components: [],
+            embeds: [],
             content: "User did not choose any option. Ending the Battle.",
           })
         }
