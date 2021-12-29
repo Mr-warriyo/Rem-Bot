@@ -4,7 +4,7 @@ module.exports = {
   name: "invite",
   description: "Invite Rem Bot to your Server!",
   type: "CHAT_INPUT",
-  category: "info",
+  category: "settings",
   botPerms: ["SEND_MESSAGES", "EMBED_LINKS"],
   execute: async (client, interaction, args) => {
     const invEm = new MessageEmbed()

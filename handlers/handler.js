@@ -1,6 +1,7 @@
 const { glob } = require("glob")
 const { promisify } = require("util")
 const { Client } = require("discord.js")
+const { Permissions } = require("discord.js")
 
 const globPromise = promisify(glob)
 
@@ -25,13 +26,38 @@ module.exports = async (client) => {
   })
   client.on("ready", async () => {
     client.guilds.cache.forEach(async (guild) => {
-      console.log(guild.name, guild.id)
-      await client.guilds.cache.get(guild.id).commands.set(arrayOfSlashCommands)
+      try {
+        console.log("Slash Registered:", guild.name, guild.id)
+        await client.guilds.cache
+          .get(guild.id)
+          .commands.set(arrayOfSlashCommands)
+      } catch (err) {
+        console.log(
+          "w/out perms(Slash cmd not registered):",
+          guild.name,
+          guild.id,
+          `\n${err}`
+        )
+      }
     })
   })
 
   // If bot joins a guild
   client.on("guildCreate", async (guild) => {
-    await client.guilds.cache.get(guild.id).commands.set(arrayOfSlashCommands)
+    try {
+      await client.guilds.cache.get(guild.id).commands.set(arrayOfSlashCommands)
+      console.log(
+        "Joined & Registered Slash Command for Server:",
+        guild.name,
+        guild.id
+      )
+    } catch (err) {
+      console.log(
+        "Someone Invited me w/out perms(Slash cmd not registered):",
+        guild.name,
+        guild.id,
+        `\n${err}`
+      )
+    }
   })
 }

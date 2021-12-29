@@ -6,7 +6,7 @@ module.exports = {
   description: "Report a Bug which you find in Bot :)",
   type: "CHAT_INPUT",
   botPerms: ["SEND_MESSAGES", "EMBED_LINKS"],
-  category: "info",
+  category: "settings",
   options: [
     {
       name: "bug",

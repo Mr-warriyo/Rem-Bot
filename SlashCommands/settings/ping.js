@@ -5,7 +5,7 @@ module.exports = {
   description: "Shows the Ping & Latency Ping",
   type: "CHAT_INPUT",
   botPerms: ["SEND_MESSAGES", "EMBED_LINKS"],
-  category: "info",
+  category: "settings",
   execute: async (client, interaction, args) => {
     const hello = await interaction.followUp({
       content: `🏓 | Calculating the Ping!`,

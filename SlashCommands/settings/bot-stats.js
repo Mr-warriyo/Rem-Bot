@@ -7,7 +7,7 @@ module.exports = {
   description: "Shows the stats of the bot",
   type: "CHAT_INPUT",
   botPerms: ["SEND_MESSAGES", "EMBED_LINKS"],
-  category: "info",
+  category: "settings",
   execute: async (client, interaction, args) => {
     let seconds = Math.floor(client.uptime / 1000)
     let minutes = Math.floor(seconds / 60)
