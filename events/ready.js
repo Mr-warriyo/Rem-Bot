@@ -9,14 +9,14 @@ const db = new OP(process.env.mongo)
 const timenow = new Date()
 let as = 0
 client.on("ready", () => {
-  console.log(`[Day: ${timenow}] - Logged in as ${client.user.tag}!`)
+  console.log(`[${timenow}] Logged in as ${client.user.tag}!`)
   setInterval(() => {
     client.user.setActivity("Global Chat & Other Commands :)", {
       type: "STREAMING",
       url: "https://youtube.com/c/MrWarriyo",
     })
     as++
-  }, 3600) // 360000ms => 360s => 6minutes
+  }, 3600) 
 })
 /*
 let sdjs = require('sanikava-djs')

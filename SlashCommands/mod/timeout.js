@@ -35,11 +35,13 @@ module.exports = {
     const botAv = client.user.avatarURL({
       dynamic: true,
     })
-    let seconds = Math.floor(time / 1000)
+    let milliseconds = Math.floor(time)
+    let seconds = Math.floor(milliseconds / 1000)
     let minutes = Math.floor(seconds / 60)
     let hours = Math.floor(minutes / 60)
     let days = Math.floor(hours / 24)
 
+    milliseconds %= 1000
     seconds %= 60
     minutes %= 60
     hours %= 24
@@ -55,7 +57,7 @@ module.exports = {
       .setDescription(`<@!${userId}> has been Muted/Timed Out!`)
       .addField(
         "Duration:",
-        `${days} Days, ${hours} Hours, ${minutes} Minutes & ${seconds} Seconds.`
+        `${days} Days, ${hours} Hours, ${minutes} Minutes, ${seconds} Seconds & ${milliseconds} Milli Seconds.`
       )
       .addField("Reason:", `${reason}`)
       .addField("Muted By:", `${interaction.user}`)

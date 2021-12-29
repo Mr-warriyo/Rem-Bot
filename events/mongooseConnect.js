@@ -3,9 +3,13 @@ const { connect } = require("mongoose")
 const { uri } = require("../settings/config.json")
 
 client.on("ready", () => {
-  connect(uri, {
-    useUnifiedTopology: true,
-    useNewUrlParser: true,
-  })
-  console.log("\nConnected to MongoDB!")
+  try {
+    connect(uri, {
+      useUnifiedTopology: true,
+      useNewUrlParser: true,
+    })
+    console.log("\n[DATABASE] Connected to MongoDB Successfully!")
+  } catch (error) {
+    console.log(`[DATABASE: ERROR]:\n`, error)
+  }
 })
