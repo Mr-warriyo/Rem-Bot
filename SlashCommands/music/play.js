@@ -1,4 +1,4 @@
-const { event, play } = require("op-music")
+const { play } = require("op-music")
 
 module.exports = {
   name: "play",
