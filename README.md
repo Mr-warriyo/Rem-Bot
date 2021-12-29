@@ -7,6 +7,8 @@ Rem Bot is a __Anime Based__ Discord Bot. It has lots of Features &amp; main fea
 [Top.gg Website](https://top.gg/bot/808260610924085309)
 <br />
 [Invite Rem](https://top.gg/bot/808260610924085309/invite)
+<br />
+[Discord Server](https://discord.gg/FeD7f3kcNf)
 
 <hr />
 

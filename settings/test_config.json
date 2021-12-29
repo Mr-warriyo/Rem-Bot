@@ -1,5 +1,6 @@
 {
   "token": "Your Bot Token",
   "uri": "Your MongoDB Connection URL",
-  "ownerID": ["DISCORD_USER_ID_0", "DISCORD_USER_ID_1", "ADD_MORE_IF_YOU_WANT"]
+  "ownerID": ["DISCORD_USER_ID_0", "DISCORD_USER_ID_1", "ADD_MORE_IF_YOU_WANT"],
+  "supportServer": "DISCORD SUPPORT SERVER LINK"
 }
