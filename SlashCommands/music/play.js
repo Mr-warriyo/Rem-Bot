@@ -26,11 +26,17 @@ module.exports = {
         content: "I'm not in a vc channel! Use `/joinvc` Command!",
       })
     }
-
-    play({
-      interaction: interaction,
-      channel: channel,
-      song: song,
-    })
+    try {
+      play({
+        interaction: interaction,
+        channel: channel,
+        song: song,
+      })
+    } catch (error) {
+      interaction.followUp({
+        content: `Some Error Occured while Playing the Song!\nTry the command later. If it keeps giving error, Join my Support Server & Contact \`@Akshansh#2200\`.`,
+      })
+      console.log(interaction.guild.id, `\n${error}`)
+    }
   },
 }
