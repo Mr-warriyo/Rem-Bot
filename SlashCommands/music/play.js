@@ -18,7 +18,8 @@ module.exports = {
     const channel = interaction.guild.me.voice.channel
     const song = args[0]
 
-    console.log(channel)
+    console.log(song)
+    // console.log(channel)
 
     if (!channel) {
       return interaction.followUp({
