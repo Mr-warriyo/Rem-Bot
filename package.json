@@ -29,7 +29,8 @@
   },
   "homepage": "https://github.com/Mr-warriyo/Rem-Bot#readme",
   "dependencies": {
-    "discord.js": "^13.4.0",
+    "@discordjs/voice": "^0.7.5",
+    "discord.js": "^13.5.0",
     "discordjs-button-pagination": "^2.0.1",
     "figlet": "^1.5.2",
     "glob": "^7.2.0",

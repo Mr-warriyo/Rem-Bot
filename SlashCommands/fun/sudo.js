@@ -22,13 +22,10 @@ module.exports = {
     },
   ],
   execute: async (client, interaction, args) => {
-    const u = interaction.options.get("user")
-    const t = interaction.options.get("text")
+    const tt = args[1]
 
-    if (u && t) {
-      const { user } = u
-      const uu = client.users.cache.get(user.id)
-      const tt = t.value
+    if (args[0] && tt) {
+      const uu = client.users.cache.get(args[0])
 
       interaction.channel
         .createWebhook(uu.username, {

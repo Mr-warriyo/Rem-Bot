@@ -22,7 +22,7 @@ module.exports = {
     },
   ],
   execute: async (client, interaction, args) => {
-    const num = interaction.options.get("messages").value
+    const num = args[0]
     const amount = parseInt(num) + 1
     if (amount < +1 || amount >= 100) {
       return interaction.followUp({
@@ -36,7 +36,7 @@ module.exports = {
       })
     })
     interaction.channel.send({
-      content: `✅｜Command Successfully Executed!`,
+      content: `✅｜Command Successfully Executed!\`(Cleared ${num} Messages)\`.`,
     })
   },
 }

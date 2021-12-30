@@ -16,7 +16,7 @@ module.exports = {
     },
   ],
   execute: async (client, interaction, args) => {
-    const c = interaction.options.get("code").value
+    const c = args[0]
     /** 
       console.clear()
       console.log(c)

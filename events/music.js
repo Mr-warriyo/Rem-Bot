@@ -1,4 +1,4 @@
-const { event } = require("op-music")
+const { event } = require("/data/data/com.termux/files/usr/lib/node_modules/op-music")
 
 event.on("playSong", (channel, songInfo, requester) => {
   channel.send({

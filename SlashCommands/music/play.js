@@ -1,4 +1,4 @@
-const { play } = require("op-music")
+const { play } = require("/data/data/com.termux/files/usr/lib/node_modules/op-music")
 
 module.exports = {
   name: "play",

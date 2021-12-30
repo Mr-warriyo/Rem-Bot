@@ -23,11 +23,9 @@ module.exports = {
     },
   ],
   execute: async (client, interaction, args) => {
-    const u = interaction.options.get("user")
-    const r = interaction.options.get("reason")
-    const user = client.users.cache.get(u.value)
-    const member = interaction.guild.members.cache.get(u.value)
-    const reason = r.value
+    const user = client.users.cache.get(args[0])
+    const member = interaction.guild.members.cache.get(args[0])
+    const reason = args[1]
 
     const BanEmbed = new MessageEmbed()
       .setTitle("User was successfully Banned from this guild!")
