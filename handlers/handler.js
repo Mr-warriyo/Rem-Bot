@@ -25,39 +25,7 @@ module.exports = async (client) => {
     arrayOfSlashCommands.push(file)
   })
   client.on("ready", async () => {
-    client.guilds.cache.forEach(async (guild) => {
-      try {
-        console.log("Slash Registered:", guild.name, guild.id)
-        await client.guilds.cache
-          .get(guild.id)
-          .commands.set(arrayOfSlashCommands)
-      } catch (err) {
-        console.log(
-          "w/out perms(Slash cmd not registered):",
-          guild.name,
-          guild.id,
-          `\n${err}`
-        )
-      }
-    })
-  })
-
-  // If bot joins a guild
-  client.on("guildCreate", async (guild) => {
-    try {
-      await client.guilds.cache.get(guild.id).commands.set(arrayOfSlashCommands)
-      console.log(
-        "Joined & Registered Slash Command for Server:",
-        guild.name,
-        guild.id
-      )
-    } catch (err) {
-      console.log(
-        "Someone Invited me w/out perms(Slash cmd not registered):",
-        guild.name,
-        guild.id,
-        `\n${err}`
-      )
-    }
+    await client.application.commands.set(arrayOfSlashCommands)
+    console.log("[Slash Commands] Registered!")
   })
 }
