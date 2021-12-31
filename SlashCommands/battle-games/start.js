@@ -72,28 +72,23 @@ module.exports = {
     start()
 
     async function start() {
-      const BattleBeginButton = new MessageActionRow()
+      const BattleBeginButton = new MessageActionRow().addComponents(
+        new MessageButton()
+          .setLabel("Kick")
+          .setStyle("DANGER")
+          .setCustomId("KICK")
+          .setEmoji("🦶"),
+        new MessageButton()
+          .setLabel("Punch")
+          .setStyle("DANGER")
+          .setCustomId("PUNCH")
+          .setEmoji("🤜"),
 
-        .addComponents(
-          new MessageButton()
-            .setLabel("Kick")
-            .setStyle("DANGER")
-            .setCustomId("KICK")
-            .setEmoji("🦶")
-        )
-        .addComponents(
-          new MessageButton()
-            .setLabel("Punch")
-            .setStyle("DANGER")
-            .setCustomId("PUNCH")
-            .setEmoji("🤜")
-        )
-        .addComponents(
-          new MessageButton()
-            .setLabel("Random")
-            .setStyle("DANGER")
-            .setCustomId("RANDOM")
-        )
+        new MessageButton()
+          .setLabel("Random")
+          .setStyle("DANGER")
+          .setCustomId("RANDOM")
+      )
 
       let csg = await interaction.followUp({
         embeds: [BattleBeginEm],
@@ -195,28 +190,22 @@ module.exports = {
         .addField("Player 1 HP:(Bot)", `${bhp}/800`)
         .addField("Player 2 HP:(User)", `${uhp}/800`)
 
-      const newAttackButton = new MessageActionRow()
-
-        .addComponents(
-          new MessageButton()
-            .setLabel("Kick")
-            .setStyle("DANGER")
-            .setCustomId("kick")
-            .setEmoji("🦶")
-        )
-        .addComponents(
-          new MessageButton()
-            .setLabel("Punch")
-            .setStyle("DANGER")
-            .setCustomId("punch")
-            .setEmoji("🤜")
-        )
-        .addComponents(
-          new MessageButton()
-            .setLabel("Random")
-            .setStyle("DANGER")
-            .setCustomId("random")
-        )
+      const newAttackButton = new MessageActionRow().addComponents(
+        new MessageButton()
+          .setLabel("Kick")
+          .setStyle("DANGER")
+          .setCustomId("kick")
+          .setEmoji("🦶"),
+        new MessageButton()
+          .setLabel("Punch")
+          .setStyle("DANGER")
+          .setCustomId("punch")
+          .setEmoji("🤜"),
+        new MessageButton()
+          .setLabel("Random")
+          .setStyle("DANGER")
+          .setCustomId("random")
+      )
 
       await msg.edit({
         embeds: [newAttackEm],

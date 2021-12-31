@@ -25,7 +25,7 @@ module.exports = {
       })
       .setColor("WHITE")
       .setDescription(
-        `Bot was last restarted: \`${days}\`: Days \`${hours}\`: Hours \`${minutes}\`: Minutes \`${seconds}\`: Seconds ago.`
+        `Bot was last restarted: \`${days}\`: Days, \`${hours}\`: Hours, \`${minutes}\`: Minutes & \`${seconds}\`: Seconds ago.`
       )
       .setTimestamp()
 
