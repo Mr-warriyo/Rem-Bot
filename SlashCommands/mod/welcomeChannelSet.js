@@ -1,9 +1,10 @@
 const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js")
-const chatbotModel = require("../../models/chatbotModel")
+const welcomeChModel = require("../../models/welcomeChannelModel.js")
 
 module.exports = {
-  name: "setchatbotchannel",
-  description: "Set a Chatbot Channel & stop using `/chat` command.",
+  name: "setwelcomechannel",
+  description:
+    "Set a Welcome Channel & everytime someone joins bot will make sure to greet them :)",
   type: "CHAT_INPUT",
   category: "mainFeatures",
   userPerms: ["ADMINISTRATOR"],
@@ -11,7 +12,7 @@ module.exports = {
   options: [
     {
       name: "channel",
-      description: "Add a Channel to set ChatBot",
+      description: "Add a Channel to set as the Welcome Channel",
       type: "CHANNEL",
       required: true,
     },
@@ -20,7 +21,7 @@ module.exports = {
     const channelId = args[0]
     const guildId = interaction.guild.id
 
-    const a = await chatbotModel.findOne({
+    const a = await welcomeChModel.findOne({
       guildId,
     })
 
@@ -55,7 +56,7 @@ module.exports = {
 
         collector.on("collect", async (i) => {
           if (i.customId === "CreateNewChannel") {
-            await chatbotModel.findOneAndUpdate(
+            await welcomeChModel.findOneAndUpdate(
               {
                 guildId,
               },
@@ -64,14 +65,14 @@ module.exports = {
               }
             )
             await i.update({
-              content: `Setted Up the New Chatbot Channel to <#${channelId}> from <#${a.channelId}>!`,
+              content: `Setted Up the New Welcome Channel to <#${channelId}> from <#${a.channelId}>!`,
               components: [],
               embeds: [],
             })
             collector.stop()
           } else if (i.customId === "DontCreateNewChannel") {
             await i.update({
-              content: `Action Denied! Chatbot Channel is still same: <#${channelId}>.`,
+              content: `Action Denied! Welcome Channel is still same: <#${channelId}>.`,
               components: [],
               embeds: [],
             })
@@ -92,7 +93,7 @@ module.exports = {
       channelAlreadyExists()
 
       const AEm = new MessageEmbed()
-        .setTitle("Set Chatbot Channel")
+        .setTitle("Set Welcome Channel")
         .setColor("RANDOM")
         .setAuthor({
           name: client.user.username,
@@ -102,7 +103,7 @@ module.exports = {
         .setDescription("Some Error Occurred while the execution!")
         .addField(
           "Error:",
-          `There is Already a Chatbot Channel (<#${a.channelId}>)`
+          `There is Already a Welcome Channel (<#${a.channelId}>)`
         )
         .addField("Info", `Use Buttons below to continue or Abort the command.`)
         .setFooter({ text: "Timeout for Buttons: 40secs" })
@@ -112,20 +113,20 @@ module.exports = {
         components: [newRow],
       })
     } else {
-      await chatbotModel.create({
+      await welcomeChModel.create({
         guildId,
         channelId,
       })
 
       const EM = new MessageEmbed()
-        .setTitle("Setting Up ChatBot!")
+        .setTitle("Setup Done!!")
         .setColor("GREEN")
         .setAuthor({
           name: client.user.username,
           url: client.user.avatarURL({ dynamic: true }),
           iconURL: client.user.displayAvatarURL({ dynamic: true }),
         })
-        .setDescription(`New ChatBot Channel set to <#${channelId}>!`)
+        .setDescription(`New Welcome Channel set to <#${channelId}>!`)
 
       msg.edit({
         content: `Done! <#${channelId}>.`,

@@ -2,31 +2,31 @@ const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js")
 const { supportServer, github } = require("../../settings/config.json")
 
 module.exports = {
-  name: "supportserver",
-  description: "Rem Bot's Support Discord Server Link.",
+  name: "implinks",
+  description: "Important Links related to Bot.",
   type: "CHAT_INPUT",
   botPerms: ["SEND_MESSAGES", "EMBED_LINKS"],
   category: "settings",
   execute: async (client, interaction, args) => {
-    const ss = new MessageEmbed()
-      .setTitle("Support Server Link!")
+    const embed = new MessageEmbed()
+      .setTitle("Important Links:")
       .setAuthor({
         name: client.user.username,
         url: client.user.avatarURL({ dynamic: true }),
         iconURL: client.user.displayAvatarURL({ dynamic: true }),
       })
-      .setColor("#FFC0CB")
+      .setColor("RANDOM")
       .setDescription(
-        "Found some Spooky Bugs in the Bot or want to Join the Rem Bot's Community?\nThen, Bravo! you've used the right command!"
+        "Here are some Links which you may find helpfull If you're facing any errors with bot, want to support it or want to join bot's communtiy."
       )
       .setFooter({
-        text: "There are some other Important Links in form of Buttons!",
+        text: "Thanks for Using Me!",
       })
 
-    const ssR = new MessageActionRow()
+    const row = new MessageActionRow()
       .addComponents(
         new MessageButton()
-          .setLabel("Discord Server")
+          .setLabel("Rem's Discord Server")
           .setStyle("LINK")
           .setURL(supportServer)
       )
@@ -38,14 +38,14 @@ module.exports = {
       )
       .addComponents(
         new MessageButton()
-          .setLabel("Github(Source Code)")
+          .setLabel("Github(src code)")
           .setStyle("LINK")
           .setURL(github)
       )
 
     interaction.followUp({
-      embeds: [ss],
-      components: [ssR],
+      embeds: [embed],
+      components: [row],
     })
   },
 }

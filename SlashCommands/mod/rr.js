@@ -57,7 +57,10 @@ module.exports = {
         "Rules:",
         "\nTapping on Button 1st Time adds the role.\nTapping on Button 2nd Time removes the role.\n"
       )
-      .setFooter(interaction.guild.name, interaction.guild.iconURL())
+      .setFooter({
+        text: interaction.guild.name,
+        iconURL: interaction.guild.iconURL(),
+      })
 
     for (let i = 0; i < interaction.options.data.length; i++) {
       //loop starts

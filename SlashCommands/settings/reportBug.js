@@ -19,7 +19,7 @@ module.exports = {
     const ownerA = client.users.cache.get(ownerID[0])
     const bug = args[0]
     const { user } = interaction
-    
+
     /**
      * ownerID[0] is first ID of array
      * check settings/config.json
@@ -43,7 +43,7 @@ module.exports = {
         "Server:",
         `Name: ${interaction.guild.name}\nID: ${interaction.guild.id}`
       )
-      .setFooter("Reply to them :)")
+      .setFooter({ text: "Reply to them :)" })
 
     ownerA.send({
       embeds: [em],

@@ -39,9 +39,9 @@ client.on("messageCreate", async (message) => {
               `\n[Support Server](https://discord.gg/m9q39CZuHv)\n[Top.gg](https://top.gg/bot/${client.user.id})
               `
             )
-            .setFooter(
-              `Server Name: ${message.guild.name} | Server ID: ${message.guild.id} | Member Count: ${message.guild.memberCount}`
-            )
+            .setFooter({
+              text: `Server Name: ${message.guild.name} | Server ID: ${message.guild.id} | Member Count: ${message.guild.memberCount}`,
+            })
             .setTimestamp()
 
           otherCh.send({

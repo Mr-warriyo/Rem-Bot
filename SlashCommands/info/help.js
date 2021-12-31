@@ -66,9 +66,9 @@ module.exports = {
         .addField(":exclamation: Mod:", `\n${mod}`)
         .addField(":trophy: Main Features:", `\n${mainFeatures}`)
         .addField(":gear: Settings:", `\n${settings}`)
-        .setFooter(
-          "Info: Use `/help cmd-name` to know more about that commamd."
-        )
+        .setFooter({
+          text: "Info: Use `/help cmd-name` to know more about that commamd.",
+        })
 
       interaction.followUp({
         embeds: [mainPage],
@@ -91,7 +91,9 @@ module.exports = {
               .addField("Command Category:", category)
               .addField("Required Perms(User):", `${userPerms || "NONE"}`)
               .addField("Required Perms(Bot):", `${botPerms || "NONE"}`)
-              .setFooter("NOTE: The above command is a Slash Command!!")
+              .setFooter({
+                text: "NOTE: The above command is a Slash Command!!",
+              })
 
             interaction.followUp({
               embeds: [cmdInfo],

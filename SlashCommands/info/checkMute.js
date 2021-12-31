@@ -1,7 +1,7 @@
 const { MessageEmbed } = require("discord.js")
 
 module.exports = {
-  name: "checkmute",
+  name: "mutecheck",
   description: "Check wether the User is Muted/Timed Out or Not.",
   type: "CHAT_INPUT",
   category: "info",
