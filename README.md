@@ -1,5 +1,5 @@
 # Rem-Bot
-Rem Bot is a __Anime Based__ Discord Bot. It has lots of Features &amp; main features Rem is known for are Global chat &amp; ChatBot. This repository contains Source Code for Rem.
+Rem Bot is an __Anime Based__ Discord Bot. It has lots of Features &amp; main features Rem is known for are Global chat &amp; ChatBot. This repository contains Source Code for Rem.
 
 <hr />
 
@@ -13,7 +13,7 @@ Rem Bot is a __Anime Based__ Discord Bot. It has lots of Features &amp; main fea
 <hr />
 
 # Setup this Repo:
-<p> Since this is "Open Source" Project. I would love if you contribute or use it :) </p>
+<p> Since this is an "Open Source" Project. I would love if you contribute or use it :) </p>
 <p> Here are steps to Setup it on your system: </p>
 
 <hr />
@@ -37,6 +37,16 @@ __BRAVO!!__ Now you've successfully cloned the Repository! After this to run it 
 ## Install all Node Modules via:
 ```
 npm install
+```
+
+## You'll have to download `op-music` npm & then edit the `/SlashCommands/music/play.js` Line number 1:
+From:
+```
+const { play } = require("/data/data/com.termux/files/usr/lib/node_modules/op-music")
+```
+To:
+```
+const { play } = require("op-music")
 ```
 
 ## Edit config.json file:

@@ -18,7 +18,11 @@ module.exports = {
     },
   ],
   execute: async (client, interaction, args) => {
-    const channelId = args[0]
+    await interaction.followUp({
+      content: `Sorry, Bot lacks Permission to detect events.\nThis Command won't work for a while. Please wait until bot gets Permissions from Discord `,
+    })
+
+    /*   const channelId = args[0]
     const guildId = interaction.guild.id
 
     const a = await welcomeChModel.findOne({
@@ -132,6 +136,6 @@ module.exports = {
         content: `Done! <#${channelId}>.`,
         embeds: [EM],
       })
-    }
+    }*/
   },
 }
