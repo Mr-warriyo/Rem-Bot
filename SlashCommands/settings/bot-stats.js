@@ -42,7 +42,7 @@ module.exports = {
       )
       .addField(
         "Version:",
-        `Node.js: v17.2.0\nDiscord.js: ${discordjsVersion}\nBot Version: ${pkg.version} running on ${pkg.platform}`
+        `Node.js: ${process.version}\nDiscord.js: ${discordjsVersion}\nBot Version: ${pkg.version} running on ${pkg.platform}`
       )
       .addField("My Creation Date:", `2/8/2021`)
       .addField(
