@@ -28,6 +28,7 @@ module.exports = {
       let mainFeatures = ""
       let settings = ""
       let anime = ""
+      let economy = ""
       slashCommands.each(({ category, name }) => {
         if (category === "serverInfo") {
           return (serverInfo = serverInfo + `\`/${name}\`, `)
@@ -45,6 +46,8 @@ module.exports = {
           return (settings = settings + `\`/${name}\`, `)
         } else if (category === "anime") {
           return (anime = anime + `\`/${name}\`, `)
+        } else if (category === "economy") {
+          return (economy = economy + `\`/${name}\`, `)
         }
       })
 
@@ -70,6 +73,7 @@ module.exports = {
         .addField(":trophy: Main Features:", `\n${mainFeatures}`)
         .addField(":gear: Settings:", `\n${settings}`)
         .addField(":flushed: Anime(Some Commands maybe NSFW):", `\n${anime}`)
+        .addField(":coin: Economy:", `\n${economy}`)
         .setFooter({
           text: "Info: Use `/help cmd-name` to know more about that commamd.",
         })
