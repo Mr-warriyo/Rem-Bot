@@ -5,6 +5,7 @@ const BattleSpecs = require("./battlesettings")
 const AttackArr = require("./battlesettings")
 const UserSpecs = require("./battlesettings")
 const BotSpecs = require("./battlesettings")
+const BattleLoop = require("./BattleFuncs/battleStartFuncs.js")
 
 module.exports = {
   name: "startbattle",
@@ -54,19 +55,19 @@ module.exports = {
       .setDescription(
         `Started the battle between Bot & You! More Details are Provided below:`
       )
-      .addField("Player 1:", `${client.user.tag}`)
-      .addField("Player 2:", `${interaction.user.tag}`)
       .addField(
-        "How to Play?",
-        `Use the buttons Provided below to do Random Damage to Bot. Bot will do the same to you.\nAfter each move done by you & bot, embed will be updated to the latest HP & Damage.\nRandom Attack Button will do a Random Attack(either Kick or Punch).`
+        "Players:",
+        `
+        1. ${client.user.tag}\n2. ${interaction.user.tag}
+        `
       )
       .addField(
-        "What damage do the attacks do?",
-        "The Attacks do a damage between 0 to 200."
-      )
-      .addField(
-        "HP the Players get:",
-        "Both of the Players will get 800 HP, easy to take down each other? Maybe."
+        "Info:",
+        `
+        Use the buttons Provided below to do Random Damage to Bot. Bot will do the same to you. After each move done by you & bot, embed will be updated to the latest HP & Damage. *Random Attack Button will do a Random Attack(either Kick or Punch)*.
+        \nThe Attacks do a damage between 0 to 200.
+        \nBoth of the Players will get 800 HP, easy to take down each other? Maybe.
+        `
       )
 
     start()
@@ -83,7 +84,6 @@ module.exports = {
           .setStyle("DANGER")
           .setCustomId("PUNCH")
           .setEmoji("🤜"),
-
         new MessageButton()
           .setLabel("Random")
           .setStyle("DANGER")
@@ -124,7 +124,7 @@ module.exports = {
           let Player2HP = UserSpecs.hp - botDamage
           collector.stop()
           if (Player1HP !== 0 && Player2HP !== 0) {
-            return BattleLoop(Player1HP, Player2HP)
+            return BattleLoop(Player1HP, Player2HP, newAttack, msg)
           }
         } else if (i.customId === "PUNCH") {
           await i.update({
@@ -136,7 +136,7 @@ module.exports = {
           let Player2HP = UserSpecs.hp - botDamage
           collector.stop()
           if (Player1HP !== 0 && Player2HP !== 0) {
-            return BattleLoop(Player1HP, Player2HP)
+            return BattleLoop(Player1HP, Player2HP, newAttack, msg)
           }
         } else if (i.customId === "RANDOM") {
           await i.update({
@@ -148,7 +148,7 @@ module.exports = {
           let Player2HP = UserSpecs.hp - botDamage
           collector.stop()
           if (Player1HP !== 0 && Player2HP !== 0) {
-            return BattleLoop(Player1HP, Player2HP)
+            return BattleLoop(Player1HP, Player2HP, newAttack, msg)
           }
         }
       })
@@ -161,20 +161,6 @@ module.exports = {
           })
         }
       })
-    }
-
-    async function BattleLoop(p1hp, p2hp) {
-      if (p1hp <= 0 && p2hp > p1hp) {
-        await msg.edit({
-          content: `Player 2(User) Won the Game! Congratulations & celebrations!!`,
-        })
-      } else if (p2hp <= 0 && p2hp < p1hp) {
-        await msg.edit({
-          content: `Player 1(Bot) Won the Game! Better Luck next time Mr/Mrs. User!!`,
-        })
-      } else if (p1hp !== 0 && p2hp !== 0) {
-        newAttack(p1hp, p2hp)
-      }
     }
 
     async function newAttack(bhp, uhp) {
@@ -240,7 +226,7 @@ module.exports = {
           let Player2HP = nuhp - botDamage
           collector.stop()
           if (Player1HP !== 0 && Player2HP !== 0) {
-            return BattleLoop(Player1HP, Player2HP)
+            return BattleLoop(Player1HP, Player2HP, newAttack, msg)
           }
         } else if (i.customId === "punch") {
           await i.update({
@@ -252,7 +238,7 @@ module.exports = {
           let Player2HP = nuhp - botDamage
           collector.stop()
           if (Player1HP !== 0 && Player2HP !== 0) {
-            return BattleLoop(Player1HP, Player2HP)
+            return BattleLoop(Player1HP, Player2HP, newAttack, msg)
           }
         } else if (i.customId === "random") {
           await i.update({
@@ -264,7 +250,7 @@ module.exports = {
           let Player2HP = nuhp - botDamage
           collector.stop()
           if (Player1HP !== 0 && Player2HP !== 0) {
-            return BattleLoop(Player1HP, Player2HP)
+            return BattleLoop(Player1HP, Player2HP, newAttack, msg)
           }
         }
       })
