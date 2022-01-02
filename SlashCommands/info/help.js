@@ -75,7 +75,7 @@ module.exports = {
         .addField(":flushed: Anime(Some Commands maybe NSFW):", `\n${anime}`)
         .addField(":coin: Economy:", `\n${economy}`)
         .setFooter({
-          text: "Info: Use `/help cmd-name` to know more about that commamd.",
+          text: "Info: Use '/help cmd-name' to know more about that commamd.",
         })
 
       interaction.followUp({
