@@ -14,7 +14,7 @@ client.on("messageCreate", async (message) => {
   if (!a) return
   if (a) {
     if (message.channel.id === a.channelId) {
-      client.guilds.cache.forEach(async (guild) => {
+      client.guilds.cache.forEach(async (guild, i) => {
         const b = await globalChatModel.findOne({
           guildId: guild.id,
         })
@@ -41,6 +41,10 @@ client.on("messageCreate", async (message) => {
               `Links:`,
               `\n[Support Server](https://discord.gg/m9q39CZuHv)\n[Top.gg](https://top.gg/bot/${client.user.id})
               `
+            )
+            .addField(
+              `Note:`,
+              `Message may be delayed as bot waits for 2secs before sending to another server to avoid API spam.`
             )
             .setFooter({
               text: `Server Name: ${message.guild.name} | Server ID: ${message.guild.id} | Member Count: ${message.guild.memberCount}`,
