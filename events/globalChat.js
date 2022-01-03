@@ -24,6 +24,8 @@ client.on("messageCreate", async (message) => {
           const otherSr = client.guilds.cache.get(guild.id)
           const otherCh = otherSr.channels.cache.get(b.channelId)
 
+          if (message.attachments) console.log(message.attachments.url)
+
           const EM = new MessageEmbed()
             .setTitle("Global Chat: Connecting Servers.")
             .setColor("RANDOM")
@@ -33,7 +35,10 @@ client.on("messageCreate", async (message) => {
               iconURL: message.author.displayAvatarURL({ dynamic: true }),
             })
             .setThumbnail(message.guild.iconURL({ dynamic: true }))
-            .addField(`Message:`, `\n${message.content}`)
+            .addField(
+              `Message:`,
+              `\n${message.content || "*(System: User did not add any text)*"}`
+            )
             .addField(
               `Links:`,
               `\n[Support Server](https://discord.gg/m9q39CZuHv)\n[Top.gg](https://top.gg/bot/${client.user.id})
