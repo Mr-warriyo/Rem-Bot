@@ -4,6 +4,8 @@ const BattleSpecs = require("../battlesettings")
 const AttackArr = require("../battlesettings")
 const UserSpecs = require("../battlesettings")
 const BotSpecs = require("../battlesettings")
+const botWon = require("./win-loseFunc.js")
+const userWon = require("./win-loseFunc.js")
 
 let Player1HP = BotSpecs.hp
 let Player2HP = UserSpecs.hp
@@ -127,12 +129,14 @@ async function colEvent(interaction, msg) {
 async function BattleLoop(p1hp, p2hp, newAttack, msg, interaction) {
   if (p1hp <= 0 && p2hp > p1hp) {
     await msg.edit({
-      content: `Player 2(User) Won the Game! Congratulations & celebrations!!`,
+      content: `Player 2(User) Won the Game! Congratulations & celebrations!!\n\n1 Win was added & 1 Lose was subtracted from your Battle Card! use \`/battlestats\` to see your current stats!`,
     })
+    userWon(client.user.id, interaction.user.id, msg)
   } else if (p2hp <= 0 && p2hp < p1hp) {
     await msg.edit({
-      content: `Player 1(Bot) Won the Game! Better Luck next time Mr/Mrs. User!!`,
+      content: `Player 1(Bot) Won the Game! Better Luck next time Mr/Mrs. User!!\n\n1 Lose was added  & 1 Win was subtracted from your Battle Card! use \`/battlestats\` to see your curreny stats!`,
     })
+    botWon(client.user.id, interaction.user.id, msg)
   } else if (p1hp !== 0 && p2hp !== 0) {
     newAttack(p1hp, p2hp, msg, interaction)
   }
