@@ -28,6 +28,15 @@ module.exports = {
     const a = await welcomeChModel.findOne({
       guildId,
     })
+    
+
+    const c = await interaction.guild.channels.cache.get(channelId)
+    if (c.type != "GUILD_TEXT") {
+      return interaction.followUp({
+        content:
+          "Provided channel must be TEXT CHANNEL not CATEGORY, NEWS CHANNEL, ANNOUNCEMENT CHANNEL, VOICE CHANNEL or any Others.",
+      })
+    } else {
 
     const msg = await interaction.followUp({
       content: "Wait a second, I'm Fetching some Data!",
@@ -136,6 +145,7 @@ module.exports = {
         content: `Done! <#${channelId}>.`,
         embeds: [EM],
       })
+    }
     }*/
   },
 }
