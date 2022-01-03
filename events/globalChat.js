@@ -24,7 +24,12 @@ client.on("messageCreate", async (message) => {
           const otherSr = client.guilds.cache.get(guild.id)
           const otherCh = otherSr.channels.cache.get(b.channelId)
 
-          if (message.attachments) console.log(message.attachments.url)
+          let mAU
+
+          if (message.attachments) {
+            let mAU = [...message.attachment]
+            console.log(mAU, mAU[0])
+          }
 
           const EM = new MessageEmbed()
             .setTitle("Global Chat: Connecting Servers.")
@@ -51,6 +56,7 @@ client.on("messageCreate", async (message) => {
 
           otherCh.send({
             embeds: [EM],
+            attachements: [mAU],
           })
         }
       })
