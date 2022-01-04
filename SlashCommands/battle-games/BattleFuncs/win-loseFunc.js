@@ -7,9 +7,9 @@ async function userWon(botId, userId, msg) {
 
   if (uM) {
     const wins = uM.wins + 1
-    const loses = uM.loses - 1
-    const totalGamesPlayed = uM.totalGamesPlayex + 1
-    const newUM = await battleModel.fineOneAndUpdate(
+    const loses = uM.loses
+    const totalGamesPlayed = uM.totalGamesPlayed + 1
+    const newUM = await battleModel.findOneAndUpdate(
       {
         userId,
       },
@@ -26,6 +26,7 @@ async function userWon(botId, userId, msg) {
     const newUM = await battleModel.create({
       userId,
       wins,
+      loses,
       totalGamesPlayed,
     })
   }
@@ -37,10 +38,10 @@ async function botWon(botId, userId, msg) {
   })
 
   if (uM) {
-    const wins = uM.wins - 1
+    const wins = uM.wins
     const loses = uM.loses + 1
     const totalGamesPlayed = uM.totalGamesPlayed + 1
-    const newUM = await battleModel.fineOneAndUpdate(
+    const newUM = await battleModel.findOneAndUpdate(
       {
         userId,
       },
@@ -63,4 +64,4 @@ async function botWon(botId, userId, msg) {
   }
 }
 
-module.exports = (userWon, botWon)
+module.exports = (botWon, userWon)

@@ -2,7 +2,7 @@ const { MessageEmbed, MessageButton, MessageActionRow } = require("discord.js")
 const start = require("./BattleFuncs/battleStartFuncs.js")
 
 module.exports = {
-  name: "startbattle",
+  name: "battlestart",
   description: "Start the Battle between you & the Bot!",
   type: "CHAT_INPUT",
   category: "game:battle",

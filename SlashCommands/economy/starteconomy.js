@@ -2,7 +2,7 @@ const { MessageEmbed } = require("discord.js")
 const economyModel = require("../../models/economyModel")
 
 module.exports = {
-  name: "starteconomy",
+  name: "economystart",
   description: "Start Playing Economy!",
   type: "CHAT_INPUT",
   category: "economy",
