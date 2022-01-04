@@ -11,7 +11,7 @@ module.exports = {
   options: [
     {
       name: "user",
-      description: "Provide a User to check their balance!!",
+      description: "Provide a User to check their battle card/stats!!",
       type: "USER",
       required: false,
     },
