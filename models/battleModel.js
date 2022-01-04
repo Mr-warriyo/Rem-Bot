@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose")
 
-const StrUnq = {
+const StrUnqReq = {
   type: String,
   required: true,
   unique: true,
@@ -20,14 +20,15 @@ const Arr = {
 
 const Num = {
   type: Number,
-  required: true,
+  required: false,
   unique: false,
 }
 
 const BATTLE = new Schema(
   {
-    userId: StrUnq,
+    userId: StrUnqReq,
     wins: Num,
+    loses: Num,
     totalGamesPlayed: Num,
   },
   {

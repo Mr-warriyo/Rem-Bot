@@ -26,6 +26,7 @@ module.exports = {
 
     if (model) {
       em.addField("Wins:", `${model.wins}`)
+      em.addField("Loses:", `${model.loses}`)
       em.addField("Total Games Played:", `${model.totalGamesPlayed}`)
 
       interaction.followUp({
@@ -34,6 +35,7 @@ module.exports = {
       })
     } else {
       em.addField("Wins:", `0`)
+      em.addField("Loses:", `0`)
       em.addField("Total Games Played:", `0`)
 
       interaction.followUp({
