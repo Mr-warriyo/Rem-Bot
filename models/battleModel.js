@@ -28,7 +28,6 @@ const BATTLE = new Schema(
   {
     userId: StrUnq,
     wins: Num,
-    loses: Num,
     totalGamesPlayed: Num,
   },
   {

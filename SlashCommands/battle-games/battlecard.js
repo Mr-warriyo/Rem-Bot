@@ -4,7 +4,7 @@ const battleModel = require("../../models/battleModel")
 module.exports = {
   name: "battlestats",
   description:
-    "Shows your Battle Card :)! It's all based on `/startbattle` command.",
+    "Shows your Battle Card :)! It's all based on `/battlestart` command.",
   type: "CHAT_INPUT",
   category: "game:battle",
   botPerms: ["SEND_MESSAGES", "EMBED_LINKS"],
@@ -26,7 +26,6 @@ module.exports = {
 
     if (model) {
       em.addField("Wins:", `${model.wins}`)
-      em.addField("Loses:", `${model.loses}`)
       em.addField("Total Games Played:", `${model.totalGamesPlayed}`)
 
       interaction.followUp({
@@ -35,7 +34,6 @@ module.exports = {
       })
     } else {
       em.addField("Wins:", `0`)
-      em.addField("Loses:", `0`)
       em.addField("Total Games Played:", `0`)
 
       interaction.followUp({
