@@ -15,7 +15,6 @@ client.on("messageCreate", async (message) => {
       .setDescription(
         `I think you wanna use me. Try \`/help\`(A Slash Command) to get a List of available Commands.\n\nIf you're unable to see my Slash Command, check if I have \`APPLICATION COMMANDS\` Permission or Join My Support Server & get support with this Issue!`
       )
-      .setImage(client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
 
     const emR = new MessageActionRow()
       .addComponents(

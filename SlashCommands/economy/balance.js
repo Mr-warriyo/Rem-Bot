@@ -49,7 +49,7 @@ module.exports = {
 
       if (!a) {
         balEm.setDescription(
-          `${member.user.tag} has not started Playing economy yet! ${member.user.tag} use \`/starteconomy\` to start Playing!`
+          `${member.user.tag} has not started Playing economy yet! \n\n*(Tip for ${member.user.tag}: use \`/economystart\` to start Playing!)*`
         )
         balEm.setColor("RED")
 

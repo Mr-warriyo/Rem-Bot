@@ -4,12 +4,21 @@ const battleModel = require("../../models/battleModel")
 module.exports = {
   name: "battlestats",
   description:
-    "Shows your Battle Card :)! It's all based on `/battlestart` command.",
+    "Shows your Battle Card :)! It's all based on /battlestart command.",
   type: "CHAT_INPUT",
   category: "game:battle",
   botPerms: ["SEND_MESSAGES", "EMBED_LINKS"],
+  options: [
+    {
+      name: "user",
+      description: "Provide a User to check their balance!!",
+      type: "USER",
+      required: false,
+    },
+  ],
   execute: async (client, interaction, args) => {
-    const userId = interaction.user.id
+    const userId = args[0] || interaction.member.id
+    const member = interaction.guild.members.cache.get(userId)
     const guildId = interaction.guild.id
     const model = await battleModel.findOne({
       userId,
@@ -31,7 +40,7 @@ module.exports = {
 
       interaction.followUp({
         embeds: [em],
-        content: "Here is your Battle Card!",
+        content: `Here is ${member.user.tag}'s Battle Card!`
       })
     } else {
       em.addField("Wins:", `0`)
@@ -41,7 +50,7 @@ module.exports = {
       interaction.followUp({
         embeds: [em],
         content:
-          "Here is your Battle Card! I think you never Played a game with me.\nTry `/battlestart` command once :)",
+          `Here is your Battle Card! I ${member.user.tag} never Played a game with me.\nTry \`/battlestart\` command once :)`,
       })
     }
   },
