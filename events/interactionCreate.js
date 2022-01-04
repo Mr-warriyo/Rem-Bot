@@ -31,7 +31,7 @@ client.on("interactionCreate", async (interaction) => {
       interaction.member = interaction.guild.members.cache.get(
         interaction.user.id
       )
-      const EPERM = new MessageEmbed()
+      const Err = new MessageEmbed()
         .setTitle("Error!")
         .setColor("RED")
         .setDescription(
@@ -40,7 +40,7 @@ client.on("interactionCreate", async (interaction) => {
 
       if (cmd) {
         if (!interaction.member.permissions.has(cmd.userPerms || [])) {
-          EPERM.addField(
+          Err.addField(
             "Permission Error",
             `You need: \`${
               cmd.userPerms || []
@@ -48,10 +48,10 @@ client.on("interactionCreate", async (interaction) => {
           )
 
           return interaction.followUp({
-            embeds: [EPERM],
+            embeds: [Err],
           })
         } else if (!interaction.guild.me.permissions.has(cmd.botPerms || [])) {
-          EPERM.addField(
+          Err.addField(
             "Permission Error",
             `I require: \`${
               cmd.botPerms || []
@@ -59,23 +59,37 @@ client.on("interactionCreate", async (interaction) => {
           )
 
           return interaction.followUp({
-            embeds: [EPERM],
+            embeds: [Err],
           })
         }
       }
 
       if (cmd) {
-        if (cmd.ownerOnly === true) {
+        if (cmd.ownerOnly) {
           if (
             interaction.user.id !== "584684175035203605" &&
             interaction.user.id !== "621217072541597696"
           ) {
-            EPERM.addField(
+            Err.addField(
               "Permission Error",
               `This command is only made for Bot Owner! \`@Akshansh#2200\` & \` @Sanikava#2663\``
             )
             return interaction.followUp({
-              embeds: [EPERM],
+              embeds: [Err],
+            })
+          }
+        }
+      }
+
+      if (cmd) {
+        if (cmd.nsfw) {
+          if (!interaction.channel.nsfw) {
+            Err.addField(
+              "Channel Allowance Error",
+              `This command is \`Not Safe for Watch\`(NSFW).\nPlease mark this channel as \`NSFW_CHANNEL\` to use this command.`
+            )
+            return interaction.followUp({
+              embeds: [Err],
             })
           }
         }

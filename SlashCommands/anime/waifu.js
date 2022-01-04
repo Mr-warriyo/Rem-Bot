@@ -7,6 +7,7 @@ module.exports = {
   type: "CHAT_INPUT",
   category: "anime",
   botPerms: ["SEND_MESSAGES", "EMBED_LINKS"],
+  nsfw: true,
   execute: async (client, interaction, args) => {
     const anime = randomanime.anime()
     const embed = new Discord.MessageEmbed()
@@ -15,12 +16,9 @@ module.exports = {
       .setDescription("Here is a waifu for you!")
       .setTimestamp()
       .setColor("RANDOM")
-    if (interaction.channel.nsfw) {
-      interaction.followUp({ embeds: [embed] })
-    } else {
-      interaction.followUp({
-        content: "This channel is not NSFW. please enable it",
-      })
-    }
+
+    await interaction.followUp({
+      embeds: [embed],
+    })
   },
 }
