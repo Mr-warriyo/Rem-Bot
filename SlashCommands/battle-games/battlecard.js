@@ -25,7 +25,7 @@ module.exports = {
     })
 
     const em = new MessageEmbed()
-      .setTitle(`Battle Card of ${interaction.user.tag}!`)
+      .setTitle(`Battle Card of ${member.user.tag}!`)
       .setColor("RANDOM")
       .setAuthor({
         name: client.user.username,
@@ -50,7 +50,7 @@ module.exports = {
       interaction.followUp({
         embeds: [em],
         content:
-          `Here is your Battle Card! I ${member.user.tag} never Played a game with me.\nTry \`/battlestart\` command once :)`,
+          `Here is your Battle Card! I think ${member.user.tag} never Played a game with me.\nTry \`/battlestart\` command once :)`,
       })
     }
   },
