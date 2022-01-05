@@ -3,7 +3,6 @@
   "version": "4.0.0",
   "description": "Rem is an Anime Based Discord Bot known for its main/best features which are Global Chat & ChatBot. This Project contains source code for Rem.",
   "main": "Rem.js",
-  "platform": "Linux",
   "scripts": {
     "start": "node .",
     "dev": "nodemon",
