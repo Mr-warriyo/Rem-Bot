@@ -20,6 +20,34 @@ client.on("messageCreate", async (message) => {
   if (!a) return
   if (a) {
     if (message.channel.id === a.channelId) {
+      async function imgDetect() {
+        const imgs = JSON.stringify(...message.attachments.values())
+        for (rem = 0; rem < message.attachments.size; rem++) {
+          const image =
+            message.attachments.at(rem).url ||
+            message.attachments.at(rem).proxyURL
+
+          const resp = await deepai
+            .callStandardApi("nsfw-detector", {
+              image,
+            })
+            .catch((err) => {
+              return message.reply({
+                content:
+                  "Some Error Occured with Image Detection Side.\nPlease Try Again Later or contact my dev via my support server.\n\nDev Usernames: `@Akshansh#2200`, `@Elon Dominican#2663`.",
+              })
+            })
+          console.log(resp.output.nsfw_score)
+          if (resp.output.nsfw_score >= 0.1) {
+            return message.reply({
+              content:
+                "Your message has a NSFW image, Please dont send it. Your message was not sent to any servers.",
+            })
+          }
+        }
+      }
+
+      if (message.attachments) await imgDetect()
       client.guilds.cache.forEach(async (guild) => {
         const b = await globalChatModel.findOne({
           guildId: guild.id,
@@ -50,7 +78,7 @@ client.on("messageCreate", async (message) => {
             )
             .addField(
               `User Note:`,
-              `\n1. Don't Download any Files sent in Global Chat, If it is some harmfull file, we will not be responsible for it.\n2. We are soon adding "nsfw-image-detection" in Global Chat to make it more secure.`
+              `\n*1. Don't Download any Files sent in Global Chat, If it is some harmfull file, we will not be responsible for it.*`
             )
             .setFooter({
               text: `Server Name: ${message.guild.name} | Server ID: ${message.guild.id} | Member Count: ${message.guild.memberCount}`,
