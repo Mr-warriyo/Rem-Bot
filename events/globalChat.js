@@ -21,11 +21,17 @@ client.on("messageCreate", async (message) => {
     if (message.channel.id === a.channelId) {
       async function imgDetect() {
         const imgs = JSON.stringify(...message.attachments.values())
-        console.log(imgs)
         for (rem = 0; rem < message.attachments.size; rem++) {
           const image =
             message.attachments.at(rem).url ||
             message.attachments.at(rem).proxyURL
+
+          if (image[rem].size >= 4000000) {
+         message.reply(
+              `Looks like your file is a bit large :(. I wont send it anywhere :) send a smaller size file from next time :)`
+            )
+            return false
+          }
 
           const resp = await deepai
             .callStandardApi("nsfw-detector", {
@@ -42,6 +48,7 @@ client.on("messageCreate", async (message) => {
               content:
                 "Your message has a NSFW image, Please dont send it. Your message was not sent to any servers.",
             })
+            return false
           }
         }
       }
