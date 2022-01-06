@@ -42,67 +42,53 @@ client.on("messageCreate", async (message) => {
               content:
                 "Your message has a NSFW image, Please dont send it. Your message was not sent to any servers.",
             })
-          } else {
-            await GlobalChat()
           }
         }
       }
 
-
-      if (message.attachments) {
-        await imgDetect()
-      } else {
-        await GlobalChat()
-      }
-      
-      
-      async function GlobalChat() {
-        client.guilds.cache.forEach(async (guild) => {
-          const b = await globalChatModel.findOne({
-            guildId: guild.id,
-          })
-
-          if (!b) return
-          if (b) {
-            const otherSr = client.guilds.cache.get(guild.id)
-            const otherCh = otherSr.channels.cache.get(b.channelId)
-
-            const EM = new MessageEmbed()
-              .setTitle("Global Chat: Connecting Servers.")
-              .setColor("RANDOM")
-              .setAuthor({
-                name: message.author.tag,
-                url: message.author.avatarURL({ dynamic: true }),
-                iconURL: message.author.displayAvatarURL({ dynamic: true }),
-              })
-              .setThumbnail(message.guild.iconURL({ dynamic: true }))
-              .addField(
-                `Message:`,
-                `\n${
-                  message.content || "*(System: User did not add any text)*"
-                }`
-              )
-              .addField(
-                `Links:`,
-                `\n[Support Server](https://discord.gg/m9q39CZuHv)\n[Top.gg](https://top.gg/bot/${client.user.id})
-              `
-              )
-              .addField(
-                `User Note:`,
-                `\n*1. Don't Download any Files sent in Global Chat, If it is some harmfull file, we will not be responsible for it.*`
-              )
-              .setFooter({
-                text: `Server Name: ${message.guild.name} | Server ID: ${message.guild.id} | Member Count: ${message.guild.memberCount}`,
-              })
-              .setTimestamp()
-
-            otherCh.send({
-              embeds: [EM],
-              files: [...(message.attachments.values() || null)],
-            })
-          }
+      client.guilds.cache.forEach(async (guild) => {
+        const b = await globalChatModel.findOne({
+          guildId: guild.id,
         })
-      }
+
+        if (!b) return
+        if (b) {
+          const otherSr = client.guilds.cache.get(guild.id)
+          const otherCh = otherSr.channels.cache.get(b.channelId)
+
+          const EM = new MessageEmbed()
+            .setTitle("Global Chat: Connecting Servers.")
+            .setColor("RANDOM")
+            .setAuthor({
+              name: message.author.tag,
+              url: message.author.avatarURL({ dynamic: true }),
+              iconURL: message.author.displayAvatarURL({ dynamic: true }),
+            })
+            .setThumbnail(message.guild.iconURL({ dynamic: true }))
+            .addField(
+              `Message:`,
+              `\n${message.content || "*(System: User did not add any text)*"}`
+            )
+            .addField(
+              `Links:`,
+              `\n[Support Server](https://discord.gg/m9q39CZuHv)\n[Top.gg](https://top.gg/bot/${client.user.id})
+              `
+            )
+            .addField(
+              `User Note:`,
+              `\n*1. Don't Download any Files sent in Global Chat, If it is some harmfull file, we will not be responsible for it.*`
+            )
+            .setFooter({
+              text: `Server Name: ${message.guild.name} | Server ID: ${message.guild.id} | Member Count: ${message.guild.memberCount}`,
+            })
+            .setTimestamp()
+
+          otherCh.send({
+            embeds: [EM],
+            files: [...(message.attachments.values() || null)],
+          })
+        }
+      })
     }
   }
 })
