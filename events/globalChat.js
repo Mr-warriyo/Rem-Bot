@@ -19,7 +19,7 @@ client.on("messageCreate", async (message) => {
 
   if (a) {
     if (message.channel.id === a.channelId) {
-      async function imgDetect() {
+      if (message.attachments.size) {
         const imgs = JSON.stringify(...message.attachments.values())
         for (rem = 0; rem < message.attachments.size; rem++) {
           const image =
@@ -27,7 +27,7 @@ client.on("messageCreate", async (message) => {
             message.attachments.at(rem).proxyURL
 
           if (image[rem].size >= 4000000) {
-         message.reply(
+            message.reply(
               `Looks like your file is a bit large :(. I wont send it anywhere :) send a smaller size file from next time :)`
             )
             return false
@@ -51,10 +51,6 @@ client.on("messageCreate", async (message) => {
             return false
           }
         }
-      }
-
-      if (message.attachments.size) {
-        await imgDetect()
       }
 
       client.guilds.cache.forEach(async (guild) => {
