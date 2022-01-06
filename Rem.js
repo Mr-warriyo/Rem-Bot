@@ -8,7 +8,7 @@ const client = new Client({
     Intents.FLAGS.DIRECT_MESSAGES,
   ],
   params: ["CHANNEL"],
-  restRequestTimeout: 20000,
+  restRequestTimeout: 60000,
 })
 const { token, prefix } = require("./settings/config.json")
 const sdjs = require("sanikava-djs")
