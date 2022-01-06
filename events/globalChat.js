@@ -32,16 +32,10 @@ client.on("messageCreate", async (message) => {
               image,
             })
             .catch((err) => {
-              return message.reply({
-                content:
-                  "Some Error Occured with Image Detection Side.\nPlease Try Again Later or contact my dev via my support server.\n\nDev Usernames: `@Akshansh#2200`, `@Elon Dominican#2663`.",
-              })
+              return message.reply({content:"Some Error Occured with Image Detection Side.\nPlease Try Again Later or contact my dev via my support server.\n\nDev Usernames: `@Akshansh#2200`, `@Elon Dominican#2663`.",});
             })
           if (resp.output.nsfw_score >= 0.1) {
-            return message.reply({
-              content:
-                "Your message has a NSFW image, Please dont send it. Your message was not sent to any servers.",
-            })
+            return message.reply({content:"Your message has a NSFW image, Please dont send it. Your message was not sent to any servers.",});
           }
         }
       }
