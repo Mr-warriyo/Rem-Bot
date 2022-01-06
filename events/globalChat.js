@@ -41,11 +41,11 @@ client.on("messageCreate", async (message) => {
           if (resp.output.nsfw_score >= 0.1) { 
           // Personally I would set this much higher to prevent false positives, maybe 0.75
             let chan = message.channel
-            message.delete()
-            return chan.send({
+            await chan.send({
               content:
                 "Your message has a NSFW image, Please dont send it. Your message was not sent to any servers.",
             })
+            return await message.delete()
           }
         }
       }
