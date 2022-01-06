@@ -21,6 +21,7 @@ client.on("messageCreate", async (message) => {
     if (message.channel.id === a.channelId) {
       async function imgDetect() {
         const imgs = JSON.stringify(...message.attachments.values())
+        console.log(imgs)
         for (rem = 0; rem < message.attachments.size; rem++) {
           const image =
             message.attachments.at(rem).url ||
@@ -36,7 +37,7 @@ client.on("messageCreate", async (message) => {
                   "Some Error Occured with Image Detection Side.\nPlease Try Again Later or contact my dev via my support server.\n\nDev Usernames: `@Akshansh#2200`, `@Elon Dominican#2663`.",
               })
             })
-          if (resp.output.nsfw_score >= 0.1) {
+          if (resp.output.nsfw_score >= 0.7) {
             message.reply({
               content:
                 "Your message has a NSFW image, Please dont send it. Your message was not sent to any servers.",
@@ -45,7 +46,7 @@ client.on("messageCreate", async (message) => {
         }
       }
 
-      if (message.attachments) {
+      if (message.attachments.size) {
         await imgDetect()
       }
 
