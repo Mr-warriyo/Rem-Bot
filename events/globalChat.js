@@ -17,8 +17,9 @@ client.on("messageCreate", async (message) => {
     guildId,
   })
 
-  if (!a) return
-  if (a) {
+  if (!a) {
+    return
+  } else {
     if (message.channel.id === a.channelId) {
       async function imgDetect() {
         const imgs = JSON.stringify(...message.attachments.values())
@@ -37,8 +38,11 @@ client.on("messageCreate", async (message) => {
                   "Some Error Occured with Image Detection Side.\nPlease Try Again Later or contact my dev via my support server.\n\nDev Usernames: `@Akshansh#2200`, `@Elon Dominican#2663`.",
               })
             })
-          if (resp.output.nsfw_score >= 0.1) {
-            return message.reply({
+          if (resp.output.nsfw_score >= 0.1) { 
+          // Personally I would set this much higher to prevent false positives, maybe 0.75
+            let chan = message.channel
+            message.delete()
+            return chan.send({
               content:
                 "Your message has a NSFW image, Please dont send it. Your message was not sent to any servers.",
             })
@@ -51,8 +55,9 @@ client.on("messageCreate", async (message) => {
           guildId: guild.id,
         })
 
-        if (!b) return
-        if (b) {
+        if (!b) {
+          return
+        } else {
           const otherSr = client.guilds.cache.get(guild.id)
           const otherCh = otherSr.channels.cache.get(b.channelId)
 
