@@ -2,6 +2,11 @@ const client = require("../Rem")
 const globalChatModel = require("../models/globalChatModel")
 const { MessageEmbed } = require("discord.js")
 
+// Image Detection:
+const deepai = require('deepai');
+const { DEEPAI_API_KEY } = require("./settings/config.json")
+
+
 client.on("messageCreate", async (message) => {
   if (message.author.bot) return
 
