@@ -7,7 +7,6 @@ const db = new OP(process.env.mongo)
 */
 
 const timenow = new Date()
-let as = 0
 client.on("ready", () => {
   console.log(`[${timenow}] Logged in as ${client.user.tag}!`)
   setInterval(() => {
@@ -15,7 +14,6 @@ client.on("ready", () => {
       type: "STREAMING",
       url: "https://youtube.com/c/MrWarriyo",
     })
-    as++
   }, 3600) 
 })
 /*

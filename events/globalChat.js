@@ -4,6 +4,7 @@ const { MessageEmbed } = require("discord.js")
 
 client.on("messageCreate", async (message) => {
   if (message.author.bot) return
+
   const channelId = message.channel.id
   const guildId = message.guild.id
 
@@ -41,6 +42,10 @@ client.on("messageCreate", async (message) => {
               `Links:`,
               `\n[Support Server](https://discord.gg/m9q39CZuHv)\n[Top.gg](https://top.gg/bot/${client.user.id})
               `
+            )
+            .addField(
+              `User Note:`,
+              `\n1. Don't Download any Files sent in Global Chat, If it is some harmfull file, we will not be responsible for it.\n2. We are soon adding "nsfw-image-detection" in Global Chat to make it more secure.`
             )
             .setFooter({
               text: `Server Name: ${message.guild.name} | Server ID: ${message.guild.id} | Member Count: ${message.guild.memberCount}`,
