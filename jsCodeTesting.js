@@ -10,3 +10,15 @@ for (hello = 0; hello < ma.length; hello++) {
 }
 
 console.log(ma, ma.length)
+
+let arr = [
+  [1, 2, 3],
+  [4, 5, 6],
+]
+
+var empArr = [].concat(...arr)
+
+// EMP's Answer:
+const empArr2 = arr.flat()
+
+console.log(empArr, empArr2)

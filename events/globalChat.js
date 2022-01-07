@@ -26,13 +26,6 @@ client.on("messageCreate", async (message) => {
             message.attachments.at(rem).url ||
             message.attachments.at(rem).proxyURL
 
-          if (image[rem].size >= 4000000) {
-            message.reply(
-              `Looks like your file is a bit large :(. I wont send it anywhere :) send a smaller size file from next time :)`
-            )
-            return false
-          }
-
           const resp = await deepai
             .callStandardApi("nsfw-detector", {
               image,
