@@ -2,8 +2,7 @@ const { MessageEmbed } = require("discord.js")
 const { TENOR_API_KEY } = require("../../settings/config.json")
 
 // Set Tenor for GIFs:
-const { client, Trending } = require("tenorjs")
-client({
+const Tenor = require("tenorjs").client({
   Key: TENOR_API_KEY,
   Filter: "off",
   Locale: "en_US",
@@ -55,17 +54,12 @@ module.exports = {
       })
       .setTimestamp()
 
-    Trending.GIFs("1")
-      .then(async (Results) => {
-        Results.forEach((Post) => {
-          console.log(`Item #${Post.id} (${Post.created}) @ ${Post.url}`)
-        })
-        await embed.setImage(Post.url)
+    Tenor.Search.Random("Anime Hug", "1").then((Results) => {
+      embed.setImage(Results[0].media[0].gif.url)
 
-        interaction.followUp({
-          embeds: [embed],
-        })
+      interaction.followUp({
+        embeds: [embed],
       })
-      .catch(console.error)
+    })
   },
 }
