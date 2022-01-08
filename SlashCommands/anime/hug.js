@@ -1,9 +1,9 @@
 const { MessageEmbed } = require("discord.js")
 
 // Set GIPHY for GIFs:
-const { setAPIKey, query, random } = require("gif-search")
+const { setAPIKey, random } = require("gif-search")
 const { GIPHY_API_KEY } = require("../../settings/config.json")
-gifSearch.setAPIKey(GIPHY_API_KEY)
+setAPIKey(GIPHY_API_KEY)
 
 module.exports = {
   name: "hug",
@@ -41,7 +41,7 @@ module.exports = {
       .setFooter("Powered by GIPHY")
       .setTimestamp()
 
-    gifSearch.random("cat").then(async (gifUrl) => {
+    random("hug").then(async (gifUrl) => {
       await embed.setImage(gifUrl)
     })
 
