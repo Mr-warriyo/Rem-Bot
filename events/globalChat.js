@@ -19,6 +19,13 @@ client.on("messageCreate", async (message) => {
 
   if (a) {
     if (message.channel.id === a.channelId) {
+      if (message.content.length >= 1024) {
+        message.reply({
+          content: `Sorry, You cannot send a message having more than 1024 characters. :(`,
+        })
+        return false
+      }
+      
       if (message.attachments.size) {
         const imgs = JSON.stringify(...message.attachments.values())
         for (rem = 0; rem < message.attachments.size; rem++) {

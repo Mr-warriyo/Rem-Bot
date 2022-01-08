@@ -30,6 +30,7 @@
   "dependencies": {
     "@discordjs/voice": "^0.7.5",
     "axios": "^0.24.0",
+    "bad-words": "^3.0.4",
     "deepai": "^0.0.3",
     "discord.js": "^13.5.0",
     "discordjs-button-pagination": "^2.0.1",
