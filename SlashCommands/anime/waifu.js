@@ -14,9 +14,9 @@ module.exports = {
       .setImage(anime)
       .setTitle("Waifu Generator")
       .setAuthor({
-        name: user.tag,
-        url: user.avatarURL({ dynamic: true }),
-        iconURL: user.displayAvatarURL({ dynamic: true }),
+        name: client.user.tag,
+        url: client.user.avatarURL({ dynamic: true }),
+        iconURL: client.user.displayAvatarURL({ dynamic: true }),
       })
       .setDescription("Here is a waifu for you!")
       .setTimestamp()

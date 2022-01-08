@@ -36,9 +36,9 @@ module.exports = {
           .setColor("RANDOM")
           .setTitle(response.title)
           .setAuthor({
-            name: user.tag,
-            url: user.avatarURL({ dynamic: true }),
-            iconURL: user.displayAvatarURL({ dynamic: true }),
+            name: client.user.tag,
+            url: client.user.avatarURL({ dynamic: true }),
+            iconURL: client.user.displayAvatarURL({ dynamic: true }),
           })
           .setURL(response.content_urls.desktop.page)
           .setDescription([
@@ -55,9 +55,9 @@ module.exports = {
           .setColor("RANDOM")
           .setTitle(response.title)
           .setAuthor({
-            name: user.tag,
-            url: user.avatarURL({ dynamic: true }),
-            iconURL: user.displayAvatarURL({ dynamic: true }),
+            name: client.user.tag,
+            url: client.user.avatarURL({ dynamic: true }),
+            iconURL: client.user.displayAvatarURL({ dynamic: true }),
           })
           .setURL(response.content_urls.desktop.page)
           .setThumbnail(response.thumbnail.source)

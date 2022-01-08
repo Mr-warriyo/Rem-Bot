@@ -1,9 +1,15 @@
 const { MessageEmbed } = require("discord.js")
+const { TENOR_API_KEY } = require("../../settings/config.json")
 
-// Set GIPHY for GIFs:
-const { setAPIKey, random } = require("gif-search")
-const { GIPHY_API_KEY } = require("../../settings/config.json")
-setAPIKey(GIPHY_API_KEY)
+// Set Tenor for GIFs:
+const { client, Trending } = require("tenorjs")
+client({
+  Key: TENOR_API_KEY,
+  Filter: "off",
+  Locale: "en_US",
+  MediaFilter: "minimal",
+  DateFormat: "D/MM/YYYY - H:mm:ss A",
+})
 
 module.exports = {
   name: "hug",
@@ -21,32 +27,45 @@ module.exports = {
   ],
   execute: async (client, interaction, args) => {
     if (args[0] === interaction.user.id) {
-      return interaction.reply({
+      return interaction.followUp({
         content: "Why are you hugging yourself?",
       })
     }
 
     const user = interaction.user
-    const taggedUser = interaction.guild.members.cache.get(args[0])
+    const taggedUser = client.users.cache.get(args[0])
+
+    if (taggedUser.bot) {
+      return interaction.followUp({
+        content: "You cannot hug bots! Silly hooman!!!",
+      })
+    }
 
     const embed = new MessageEmbed()
       .setTitle("Hug~~~~")
       .setAuthor({
-        name: user.tag,
-        url: user.avatarURL({ dynamic: true }),
-        iconURL: user.displayAvatarURL({ dynamic: true }),
+        name: client.user.tag,
+        url: client.user.avatarURL({ dynamic: true }),
+        iconURL: client.user.displayAvatarURL({ dynamic: true }),
       })
       .setColor("RANDOM")
-      .setDescription(`*${user} hugs ${taggedUser}* UwU~~~`)
-      .setFooter("Powered by GIPHY")
+      .setDescription(`*${user.tag} hugs ${taggedUser.tag}* UwU~~~`)
+      .setFooter({
+        text: "Powered by Tenor",
+      })
       .setTimestamp()
 
-    random("hug").then(async (gifUrl) => {
-      await embed.setImage(gifUrl)
-    })
+    Trending.GIFs("1")
+      .then(async (Results) => {
+        Results.forEach((Post) => {
+          console.log(`Item #${Post.id} (${Post.created}) @ ${Post.url}`)
+        })
+        await embed.setImage(Post.url)
 
-    await interaction.followUp({
-      embeds: [embed],
-    })
+        interaction.followUp({
+          embeds: [embed],
+        })
+      })
+      .catch(console.error)
   },
 }

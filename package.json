@@ -44,6 +44,7 @@
     "random-anime": "^1.0.6",
     "sanikava-db.json": "^1.0.3",
     "sanikava-djs": "^1.0.0-android.1",
-    "smartestchatbot": "^2.0.1"
+    "smartestchatbot": "^2.0.1",
+    "tenorjs": "^1.0.8"
   }
 }
