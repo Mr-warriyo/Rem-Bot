@@ -25,7 +25,10 @@ client.on("messageCreate", async (message) => {
 
   if (a) {
     if (message.channel.id === a.channelId) {
-      const cleanedText = filter.clean(message.content)
+      let cleanedText
+      if (message.content) {
+        cleanedText = filter.clean(message.content)
+      }
 
       if (message.content.length >= 1024) {
         message.reply({

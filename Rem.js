@@ -30,4 +30,10 @@ client.sdjs = sdjs
 require("./handlers/handler")(client)
 console.log("Handler is Running!")
 
+/*
+// Debug
+client.on("debug", console.log)
+client.on("warn", console.log)
+*/
+
 client.login(token)
