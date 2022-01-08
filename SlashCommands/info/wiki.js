@@ -35,6 +35,11 @@ module.exports = {
         const embed = new MessageEmbed()
           .setColor("RANDOM")
           .setTitle(response.title)
+          .setAuthor({
+            name: user.tag,
+            url: user.avatarURL({ dynamic: true }),
+            iconURL: user.displayAvatarURL({ dynamic: true }),
+          })
           .setURL(response.content_urls.desktop.page)
           .setDescription([
             `
@@ -49,6 +54,11 @@ module.exports = {
         const embed = new MessageEmbed()
           .setColor("RANDOM")
           .setTitle(response.title)
+          .setAuthor({
+            name: user.tag,
+            url: user.avatarURL({ dynamic: true }),
+            iconURL: user.displayAvatarURL({ dynamic: true }),
+          })
           .setURL(response.content_urls.desktop.page)
           .setThumbnail(response.thumbnail.source)
           .setDescription(response.extract)

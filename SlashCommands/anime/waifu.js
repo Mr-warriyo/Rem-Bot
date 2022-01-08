@@ -13,6 +13,11 @@ module.exports = {
     const embed = new Discord.MessageEmbed()
       .setImage(anime)
       .setTitle("Waifu Generator")
+      .setAuthor({
+        name: user.tag,
+        url: user.avatarURL({ dynamic: true }),
+        iconURL: user.displayAvatarURL({ dynamic: true }),
+      })
       .setDescription("Here is a waifu for you!")
       .setTimestamp()
       .setColor("RANDOM")
