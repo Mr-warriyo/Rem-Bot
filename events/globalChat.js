@@ -2,6 +2,12 @@ const client = require("../Rem")
 const globalChatModel = require("../models/globalChatModel")
 const { MessageEmbed } = require("discord.js")
 
+// BadWords Detection:
+const Filter = require("bad-words")
+const filter = new Filter({
+  placeHolder: "*",
+})
+
 // Image Detection:
 const deepai = require("deepai")
 const { DEEPAI_API_KEY } = require("../settings/config.json")
@@ -19,13 +25,15 @@ client.on("messageCreate", async (message) => {
 
   if (a) {
     if (message.channel.id === a.channelId) {
+      const cleanedText = filter.clean(message.content)
+
       if (message.content.length >= 1024) {
         message.reply({
           content: `Sorry, You cannot send a message having more than 1024 characters. :(`,
         })
         return false
       }
-      
+
       if (message.attachments.size) {
         const imgs = JSON.stringify(...message.attachments.values())
         for (rem = 0; rem < message.attachments.size; rem++) {
@@ -73,7 +81,7 @@ client.on("messageCreate", async (message) => {
             .setThumbnail(message.guild.iconURL({ dynamic: true }))
             .addField(
               `Message:`,
-              `\n${message.content || "*(System: User did not add any text)*"}`
+              `\n${cleanedText || "*(System: User did not add any text)*"}`
             )
             .addField(
               `Links:`,
