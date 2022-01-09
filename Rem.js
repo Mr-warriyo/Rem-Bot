@@ -10,7 +10,7 @@ const client = new Client({
   params: ["CHANNEL"],
   restRequestTimeout: 60000,
 })
-const { token, prefix } = require("./settings/config.json")
+const { token, prefix, TENOR_API_KEY } = require("./settings/config.json")
 const sdjs = require("sanikava-djs")
 
 const db = require("sanikava-db.json")

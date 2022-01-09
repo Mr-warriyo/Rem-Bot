@@ -1,7 +1,5 @@
 const { MessageEmbed } = require("discord.js")
-const { TENOR_API_KEY } = require("../../settings/config.json")
-
-// Set Tenor for GIFs:
+const { TENOR_API_KEY } = require(" ../../../settings/config.json")
 const Tenor = require("tenorjs").client({
   Key: TENOR_API_KEY,
   Filter: "off",
@@ -34,9 +32,9 @@ module.exports = {
     const user = interaction.user
     const taggedUser = client.users.cache.get(args[0])
 
-    if (taggedUser.bot) {
+    if (taggedUser.id === client.user.id && user.id !== "584684175035203605") {
       return interaction.followUp({
-        content: "You cannot hug bots! Silly hooman!!!",
+        content: "You cannot hug me, only my owner can do that!! Silly hooman!!!",
       })
     }
 

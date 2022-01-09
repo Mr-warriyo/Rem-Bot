@@ -49,11 +49,15 @@ client.on("messageCreate", async (message) => {
               image,
             })
             .catch((err) => {
-              return message.reply({
+              message.reply({
                 content:
                   "Some Error Occured with Image Detection Side.\nPlease Try Again Later or contact my dev via my support server.\n\nDev Usernames: `@Akshansh#2200`, `@Elon Dominican#2663`.",
               })
+              console.log(err)
+              return false
             })
+
+          if (!resp.output) return
           if (resp.output.nsfw_score >= 0.7) {
             message.reply({
               content:
