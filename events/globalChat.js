@@ -25,6 +25,17 @@ client.on("messageCreate", async (message) => {
 
   if (a) {
     if (message.channel.id === a.channelId) {
+      if (
+        message.content.includes("http") ||
+        message.content.includes("discord.gg")
+      ) {
+        message.reply({
+          content:
+            "Sorry, you are not allowed to send any kind of Links in Global Chat!\nIf this is a gif or image, please send it in a form of attached file/image. Thanks.",
+        })
+        return false
+      }
+
       let cleanedText
       if (message.content) {
         cleanedText = filter.clean(message.content)
