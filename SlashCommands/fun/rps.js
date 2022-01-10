@@ -50,7 +50,20 @@ module.exports = {
       components: [rpsR],
     })
 
-    const choices = ["🗻", "✂️", "📄"]
+    const choices = [
+      "🗻",
+      "✂️",
+      "📄",
+      "🗻",
+      "📄",
+      "✂️",
+      "🗻",
+      "🗻",
+      "✂️",
+      "📄",
+      "🗻",
+      "✂️",
+    ]
     const botChoice = choices[Math.floor(Math.random() * choices.length)]
 
     const filter = (i) => {
