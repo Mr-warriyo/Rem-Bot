@@ -2,7 +2,7 @@ const Discord = require("discord.js")
 const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js")
 
 module.exports = {
-  name: "rr",
+  name: "reactionrole",
   description:
     "Reaction Role creator. There can be 1 to 5 Reaction Roles. To add more ReactionRoles use cmd again.",
   type: "CHAT_INPUT",
