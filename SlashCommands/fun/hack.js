@@ -17,7 +17,7 @@ module.exports = {
   execute: async (client, interaction, args) => {
     const user = client.users.cache.get(args[0])
     const msg = await interaction.followUp({
-      content: `Starting to hack ${user}`,
+      content: `Starting to hack ${user.tag}`,
     })
 
     const gmails = [
@@ -33,23 +33,23 @@ module.exports = {
       msg.edit(
         `Hacked Gmail! It's \`${user.tag}${rangmails}\` and Password is ${user.id}`
       )
-    }, 10000)
+    }, 02000)
     setTimeout(() => {
       msg.edit("Ejected Virus in their device")
-    }, 20000)
+    }, 03000)
     setTimeout(() => {
       msg.edit("Deleted their accounts")
-    }, 20000)
+    }, 02000)
     setTimeout(() => {
       msg.edit("Collected all their data")
-    }, 30000)
+    }, 03000)
     setTimeout(() => {
       msg.edit("Rebooted their device")
-    }, 30000)
+    }, 02000)
     setTimeout(() => {
       msg.edit(
         "The last and most dangerous hack is completed and all their data is hacked[Sold on Dark Web & earned 10000$, they were a gold fish :)]"
       )
-    }, 30000)
+    }, 03000)
   },
 }

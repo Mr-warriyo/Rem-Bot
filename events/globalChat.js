@@ -38,7 +38,15 @@ client.on("messageCreate", async (message) => {
 
       let cleanedText
       if (message.content) {
-        cleanedText = filter.clean(message.content)
+        try {
+          cleanedText = filter.clean(message.content)
+        } catch (err) {
+          console.log(err)
+          message.reply({
+            content: "Sorry, I was unable to detect any text in this Message.",
+          })
+          return false
+        }
       }
 
       if (message.content.length >= 1024) {
