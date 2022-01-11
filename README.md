@@ -39,16 +39,6 @@ __BRAVO!!__ Now you've successfully cloned the Repository! After this to run it 
 npm install
 ```
 
-### You'll have to download `op-music` npm & then edit the `/SlashCommands/music/play.js` Line number 1:
-From:
-```
-const { play } = require("/data/data/com.termux/files/usr/lib/node_modules/op-music")
-```
-To:
-```
-const { play } = require("op-music")
-```
-
 ## Edit config.json file:
 Go to /settings folder & open `test_config.json` file. Copy the code provided in it & create a `config.json` file in `/settings` folder. Now, Edit the `config.json` details.
 
