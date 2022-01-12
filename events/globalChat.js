@@ -25,6 +25,42 @@ client.on("messageCreate", async (message) => {
 
   if (a) {
     if (message.channel.id === a.channelId) {
+      const usersMap = new Map()
+      const LIMIT = 7
+      const DIFF = 5000
+
+      if (usersMap.has(message.author.id)) {
+        const userData = usersMap.get(message.author.id)
+        const { lastMessage, timer } = userData
+        const difference =
+          message.createdTimestamp - lastMessage.createdTimestamp
+        let msgCount = userData.msgCount
+
+        if (difference > DIFF) {
+          clearTimeout(timer)
+          console.log("Cleared Timeout")
+          userData.msgCount = 1
+          userData.lastMessage = message
+          userData.timer = setTimeout(() => {
+            usersMap.delete(message.author.id)
+            console.log("Removed from map.")
+          }, TIME)
+          usersMap.set(message.author.id, userData)
+        } else {
+          ++msgCount
+          if (parseInt(msgCount) === LIMIT) {
+            message.reply({
+              content: "Warning: Spamming in this channel is forbidden.",
+            })
+            message.channel.bulkDelete(LIMIT)
+            return false
+          } else {
+            userData.msgCount = msgCount
+            usersMap.set(message.author.id, userData)
+          }
+        }
+      }
+
       if (
         message.content.includes("http") ||
         message.content.includes("discord.gg")
