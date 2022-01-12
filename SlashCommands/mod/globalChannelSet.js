@@ -75,6 +75,9 @@ module.exports = {
                 content: `Setted Up the New Global Chat Channel to <#${channelId}> from <#${a.channelId}>!`,
                 components: [],
               })
+
+              c.setRateLimitPerUser(5000)
+
               collector.stop()
             } else if (i.customId === "DontCreateNewChannel") {
               await i.update({
@@ -105,6 +108,8 @@ module.exports = {
           guildId,
           channelId,
         })
+
+        c.setRateLimitPerUser(5000)
 
         const EM = new MessageEmbed()
           .setTitle("Setting Up Global Chat!")
