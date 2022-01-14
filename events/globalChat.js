@@ -1,6 +1,6 @@
 const client = require("../Rem")
 const globalChatModel = require("../models/globalChatModel")
-const { MessageEmbed } = require("discord.js")
+const { MessageEmbed, Permissions } = require("discord.js")
 
 // BadWords Detection:
 const Filter = require("bad-words")
@@ -25,42 +25,6 @@ client.on("messageCreate", async (message) => {
 
   if (a) {
     if (message.channel.id === a.channelId) {
-      const usersMap = new Map()
-      const LIMIT = 7
-      const DIFF = 5000
-
-      if (usersMap.has(message.author.id)) {
-        const userData = usersMap.get(message.author.id)
-        const { lastMessage, timer } = userData
-        const difference =
-          message.createdTimestamp - lastMessage.createdTimestamp
-        let msgCount = userData.msgCount
-
-        if (difference > DIFF) {
-          clearTimeout(timer)
-          console.log("Cleared Timeout")
-          userData.msgCount = 1
-          userData.lastMessage = message
-          userData.timer = setTimeout(() => {
-            usersMap.delete(message.author.id)
-            console.log("Removed from map.")
-          }, TIME)
-          usersMap.set(message.author.id, userData)
-        } else {
-          ++msgCount
-          if (parseInt(msgCount) === LIMIT) {
-            message.reply({
-              content: "Warning: Spamming in this channel is forbidden.",
-            })
-            message.channel.bulkDelete(LIMIT)
-            return false
-          } else {
-            userData.msgCount = msgCount
-            usersMap.set(message.author.id, userData)
-          }
-        }
-      }
-
       if (
         message.content.includes("http") ||
         message.content.includes("discord.gg")
@@ -129,40 +93,49 @@ client.on("messageCreate", async (message) => {
         })
 
         if (b) {
-          const otherSr = client.guilds.cache.get(guild.id)
-          const otherCh = otherSr.channels.cache.get(b.channelId)
-
-          const EM = new MessageEmbed()
-            .setTitle("Global Chat: Connecting Servers.")
-            .setColor("RANDOM")
-            .setAuthor({
-              name: message.author.tag,
-              url: message.author.avatarURL({ dynamic: true }),
-              iconURL: message.author.displayAvatarURL({ dynamic: true }),
-            })
-            .setThumbnail(message.guild.iconURL({ dynamic: true }))
-            .addField(
-              `Message:`,
-              `\n${cleanedText || "*(System: User did not add any text)*"}`
+          if (
+            guild.me.permissions.has(
+              Permissions.FLAGS.MANAGE_MESSAGES,
+              Permissions.FLAGS.SEND_MESSAGES,
+              Permissions.FLAGS.EMBED_LINKS,
+              Permissions.FLAGS.ATTACH_FILES
             )
-            .addField(
-              `Links:`,
-              `\n[Support Server](https://discord.gg/m9q39CZuHv)\n[Top.gg](https://top.gg/bot/${client.user.id})
+          ) {
+            const otherSr = client.guilds.cache.get(guild.id)
+            const otherCh = otherSr.channels.cache.get(b.channelId)
+
+            const EM = new MessageEmbed()
+              .setTitle("Global Chat: Connecting Servers.")
+              .setColor("RANDOM")
+              .setAuthor({
+                name: message.author.tag,
+                url: message.author.avatarURL({ dynamic: true }),
+                iconURL: message.author.displayAvatarURL({ dynamic: true }),
+              })
+              .setThumbnail(message.guild.iconURL({ dynamic: true }))
+              .addField(
+                `Message:`,
+                `\n${cleanedText || "*(System: User did not add any text)*"}`
+              )
+              .addField(
+                `Links:`,
+                `\n[Support Server](https://discord.gg/m9q39CZuHv)\n[Top.gg](https://top.gg/bot/${client.user.id})
               `
-            )
-            .addField(
-              `User Note:`,
-              `\n*1. Don't Download any Files sent in Global Chat, If it is some harmfull file, we will not be responsible for it.*`
-            )
-            .setFooter({
-              text: `Server Name: ${message.guild.name} | Server ID: ${message.guild.id} | Member Count: ${message.guild.memberCount}`,
-            })
-            .setTimestamp()
+              )
+              .addField(
+                `User Note:`,
+                `\n*1. Don't Download any Files sent in Global Chat, If it is some harmfull file, we will not be responsible for it.*`
+              )
+              .setFooter({
+                text: `Server Name: ${message.guild.name} | Server ID: ${message.guild.id} | Member Count: ${message.guild.memberCount}`,
+              })
+              .setTimestamp()
 
-          otherCh.send({
-            embeds: [EM],
-            files: [...(message.attachments.values() || null)],
-          })
+            otherCh.send({
+              embeds: [EM],
+              files: [...(message.attachments.values() || null)],
+            })
+          }
         }
       })
     }

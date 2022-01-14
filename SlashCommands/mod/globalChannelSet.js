@@ -76,7 +76,7 @@ module.exports = {
                 components: [],
               })
 
-              c.setRateLimitPerUser(5000)
+              c.setRateLimitPerUser(5)
 
               collector.stop()
             } else if (i.customId === "DontCreateNewChannel") {
@@ -109,7 +109,7 @@ module.exports = {
           channelId,
         })
 
-        c.setRateLimitPerUser(5000)
+        c.setRateLimitPerUser(5)
 
         const EM = new MessageEmbed()
           .setTitle("Setting Up Global Chat!")
