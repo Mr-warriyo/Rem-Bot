@@ -5,6 +5,12 @@ const { Permissions, MessageEmbed } = require("discord.js")
 client.on("interactionCreate", async (interaction) => {
   if (interaction.user.bot) return
   if (interaction.isCommand()) {
+    await interaction
+      .deferReply({
+        ephermal: false,
+      })
+      .catch(() => {})
+  
     const cmd = client.slashCommands.get(interaction.commandName)
     const args = []
     try {
