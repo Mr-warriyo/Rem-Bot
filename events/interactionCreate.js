@@ -5,19 +5,7 @@ const { Permissions, MessageEmbed } = require("discord.js")
 client.on("interactionCreate", async (interaction) => {
   if (interaction.user.bot) return
   if (interaction.isCommand()) {
-    await interaction
-      .deferReply({
-        ephemeral: false,
-      })
-      .catch(() => {})
-
     const cmd = client.slashCommands.get(interaction.commandName)
-    if (!cmd) {
-      return interaction.followUp({
-        content:
-          "Some error occurred, Try again later.\nPlease ping @Akshansh#2200, If this error continues.",
-      })
-    }
     const args = []
     try {
       for (let option of interaction.options.data) {

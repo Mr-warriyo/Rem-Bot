@@ -16,6 +16,14 @@ module.exports = {
   ],
   execute: async (client, interaction, args) => {
     const user = client.users.cache.get(args[0])
+
+    if (user.id === client.user.id) {
+      interaction.reply({
+        content: "Excuse Me? You are not allowed to hack me!",
+      })
+      return false
+    }
+
     const msg = await interaction.followUp({
       content: `Starting to hack ${user.tag}`,
     })
