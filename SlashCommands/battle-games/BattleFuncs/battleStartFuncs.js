@@ -117,7 +117,7 @@ async function start(interaction, BattleBeginEm) {
   await interaction.followUp({
     embeds: [BattleBeginEm],
   })
-  let msg = await interaction.channel.send({
+  let msg = await interaction.followUp({
     content:
       "Use Buttons to select a move! Timeout for current moves: 30seconds.",
     components: [BattleBeginButton],
