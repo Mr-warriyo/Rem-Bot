@@ -25,10 +25,12 @@ client.on("messageCreate", async (message) => {
 
   if (a) {
     if (message.channel.id === a.channelId) {
-      if (
-        message.content.includes("http") ||
-        message.content.includes("discord.gg")
-      ) {
+        
+      // Regex for detecting urls
+      const regex =
+        /(?:(?:https?|ftp):\/\/|\b(?:[a-z\d]+\.))(?:(?:[^\s()<>]+|\((?:[^\s()<>]+|(?:\([^\s()<>]+\)))?\))+(?:\((?:[^\s()<>]+|(?:\(?:[^\s()<>]+\)))?\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))?/gi
+    
+      if (message.content && regex.test(message.content)) {
         message.reply({
           content:
             "Sorry, you are not allowed to send any kind of Links in Global Chat!\nIf this is a gif or image, please send it in a form of attached file/image. Thanks.",
