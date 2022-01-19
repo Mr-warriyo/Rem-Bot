@@ -133,7 +133,7 @@ client.on("messageCreate", async (message) => {
               )
               .addField(
                 `User Note:`,
-                `\n*1. Don't Download any Files sent in Global Chat, If it is some harmfull file, we will not be responsible for it.*\n2. Use \`// <Your Message>\` if you dont want your message to be sent in any servers.`
+                `\n*1. Don't Download any Files sent in Global Chat, If it is some harmfull file, we will not be responsible for it.\n2. Use \`// <Your Message>\` if you dont want your message to be sent in any servers.\n3. Bot adds \`**\` If any bad words are detected in Message.*`
               )
               .setFooter({
                 text: `Server Name: ${message.guild.name} | Server ID: ${message.guild.id} | Member Count: ${message.guild.memberCount}`,
