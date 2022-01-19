@@ -25,15 +25,22 @@ client.on("messageCreate", async (message) => {
 
   if (a) {
     if (message.channel.id === a.channelId) {
-        
       // Regex for detecting urls
       const regex =
         /(?:(?:https?|ftp):\/\/|\b(?:[a-z\d]+\.))(?:(?:[^\s()<>]+|\((?:[^\s()<>]+|(?:\([^\s()<>]+\)))?\))+(?:\((?:[^\s()<>]+|(?:\(?:[^\s()<>]+\)))?\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))?/gi
-    
+
       if (message.content && regex.test(message.content)) {
         message.reply({
           content:
             "Sorry, you are not allowed to send any kind of Links in Global Chat!\nIf this is a gif or image, please send it in a form of attached file/image. Thanks.",
+        })
+        return false
+      }
+
+      if (message.content.startsWith("//")) {
+        message.reply({
+          content:
+            "Since your Message contains // in start, I have not sent it to any servers.\nThank you!",
         })
         return false
       }
@@ -44,10 +51,6 @@ client.on("messageCreate", async (message) => {
           cleanedText = filter.clean(message.content)
         } catch (err) {
           console.log(err)
-          message.reply({
-            content: "Sorry, I was unable to detect any text in this Message.",
-          })
-          return false
         }
       }
 
@@ -117,7 +120,11 @@ client.on("messageCreate", async (message) => {
               .setThumbnail(message.guild.iconURL({ dynamic: true }))
               .addField(
                 `Message:`,
-                `\n${cleanedText || "*(System: User did not add any text)*"}`
+                `\n${
+                  cleanedText ||
+                  message.content ||
+                  "*(System: User did not add any text)*"
+                }`
               )
               .addField(
                 `Links:`,
@@ -126,7 +133,7 @@ client.on("messageCreate", async (message) => {
               )
               .addField(
                 `User Note:`,
-                `\n*1. Don't Download any Files sent in Global Chat, If it is some harmfull file, we will not be responsible for it.*`
+                `\n*1. Don't Download any Files sent in Global Chat, If it is some harmfull file, we will not be responsible for it.*\n2. Use \`// <Your Message>\` if you dont want your message to be sent in any servers.`
               )
               .setFooter({
                 text: `Server Name: ${message.guild.name} | Server ID: ${message.guild.id} | Member Count: ${message.guild.memberCount}`,
