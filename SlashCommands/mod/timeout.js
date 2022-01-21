@@ -5,8 +5,8 @@ module.exports = {
   description: "Timeouts/Mutes the tagged user from the guild!",
   type: "CHAT_INPUT",
   category: "mod",
-  userPerms: ["TIMEOUT_MEMBERS", "SEND_MESSAGES", "EMBED_LINKS"],
-  botPerms: ["TIMEOUT_MEMBERS", "SEND_MESSAGES", "EMBED_LINKS"],
+  userPerms: ["MODERATE_MEMBERS", "SEND_MESSAGES", "EMBED_LINKS"],
+  botPerms: ["MODERATE_MEMBERS", "SEND_MESSAGES", "EMBED_LINKS"],
   options: [
     {
       name: "user",
