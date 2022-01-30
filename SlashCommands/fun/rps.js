@@ -5,7 +5,7 @@ const {
 
 module.exports = {
   name: "rps",
-  description: "Rock Paper Scissors! You v/s me. Let the Game begin!",
+  description: "Rock Paper Scissors! You v/s Other Player. Let the Game begin!",
   type: "CHAT_INPUT",
   category: "fun",
   botPerms: ["SEND_MESSAGES", "EMBED_LINKS"],
