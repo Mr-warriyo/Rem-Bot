@@ -26,6 +26,10 @@ module.exports = async (client) => {
   })
   client.on("ready", async () => {
     await client.application.commands.set(arrayOfSlashCommands)
+    await client.guilds.cache
+      .get("925389763572301835")
+      .commands.set(arrayOfSlashCommands)
+
     console.log("[Slash Commands] Registered!")
   })
 }
