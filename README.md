@@ -10,6 +10,7 @@ Rem Bot is an __Anime Based__ Discord Bot. It has lots of Features &amp; main fe
 <br />
 [Rem Bot's Support Discord Server](https://discord.gg/FeD7f3kcNf)
 
+
 <hr />
 
 # Setup this Repo:
