@@ -39,7 +39,7 @@
     "glob": "^7.2.0",
     "libsodium-wrappers": "^0.7.9",
     "moment": "^2.29.1",
-    "mongoose": "^6.1.2",
+    "mongoose": "^6.2.3",
     "node-os-utils": "^1.3.5",
     "nodemon": "^2.0.15",
     "random-anime": "^1.0.6",

@@ -29,9 +29,9 @@ module.exports = {
       })
 
       const FootTips = [
-        "Use /starteconomy to start Playing Economy!",
+        "Use /economystart to start Playing Economy!",
         "zachs is a currency.",
-        "/starteconomy can give you extra zachs in special cases!",
+        "/economystart can give you extra zachs in special cases!",
       ]
 
       const ranFT = FootTips[Math.floor(Math.random() * FootTips.length)]
